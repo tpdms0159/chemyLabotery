@@ -1,0 +1,184 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(/public/icons/배경틀.png), url(/public/icons/배경화면.png) ;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-attachment: fixed, scroll;
+  padding: 5%;
+  padding-top: 10%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* ===============전체 화면 세팅=============== */
+.mainview {
+  max-width: 40rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+/* ===============로고 이미지 세팅=============== */
+
+img {
+  width: 300px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+
+
+/* ===============MoveToButton.js=============== */
+.moveButton {
+  background: rgba(255, 108, 217, 1);
+  border-radius: 50px;
+  border: none;
+  margin-top: 20px;
+  padding: 15px 30px 15px 30px;
+}
+
+.fontStyle {
+  text-decoration: none;
+  font-size: 20px;
+  color: #FFFFFF;
+  font: 100;
+}
+
+.balanceButton {
+  border-radius: 30px;
+  margin: 50px 50px;
+  padding: 50px;
+}
+
+/* ===============SelectButton.js================= */
+
+/* 짜장, 짬뽕 들어가는 selectbutton 스타일 */
+.selectButton {
+  padding: 15px 30px 15px 30px;
+  background: rgba(255, 108, 217, 1);
+  color: #FFFFFF;
+  margin: 10px;
+  font-size: 20px;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+
+/* ===============Balance_page.js=============== */
+.balancePage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ===============ValuePage.js=============== */
+.valuepage{
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 50px;
+  margin: 20px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.valuenext {
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+}
+
+/* ===============PersonPage.js=============== */
+
+.personpage{
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 50px;
+  margin: 20px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.personnext {
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+}
+
+/* ===============아래 다시 확인.js=============== */
+
+/* ===============PersonValueButton.js=============== */
+.personValuebtn {
+  border-radius: 50px;
+  margin: 5%;
+  padding: 5%;
+  width: 40%;
+  font-size: medium;
+}
+
+.blackground {
+  background-color: black;
+}
+
+/* Home_page.js */
+.homeBtn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Start_page.js */
+.startText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.startPage span {
+  margin-top: 10px;
+}
+
+.startPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+/* MentToPage.js */
+.mentToPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
