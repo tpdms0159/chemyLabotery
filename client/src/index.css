@@ -2,15 +2,13 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif, ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(/public/icons/배경틀.png), url(/public/icons/배경화면.png) ;
   background-repeat: no-repeat, no-repeat;
   background-size: cover, cover;
   background-attachment: fixed, scroll;
-  padding: 5%;
-  padding-top: 10%;
 }
 
 code {
@@ -18,18 +16,66 @@ code {
     monospace;
 }
 
+input {
+  background-color: none;
+  height: 7vh;
+  width: 80vw;
+  border: 2px solid #3688FF;
+  border-radius: 50px;
+  
+  color: black;
+  padding-left: 5vw;
+}
+
+.blackFont {
+  display: inline-block;
+  color: black;
+  font-weight: 100;
+  float: left;
+
+  align-items: center;
+}
+
+/* ====로그인화면======= */
+
+.signBox {
+  width: 80vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
+
 /* ===============전체 화면 세팅=============== */
 .mainview {
-  max-width: 40rem;
+  /* max-width: 40rem; */
   text-align: center;
-  margin: 0 auto;
+  margin: 0 auto;   
+
+  width: 80vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 
 /* ===============로고 이미지 세팅=============== */
 
 img {
-  width: 300px;
+  width: 80vw;
   height: auto;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -39,18 +85,22 @@ img {
 
 /* ===============MoveToButton.js=============== */
 .moveButton {
+  width: 80vw;
+  height: 7vh;
   background: rgba(255, 108, 217, 1);
   border-radius: 50px;
   border: none;
-  margin-top: 20px;
+  
+  margin: 5vw;
   padding: 15px 30px 15px 30px;
 }
 
 .fontStyle {
   text-decoration: none;
-  font-size: 20px;
+  font-family: rixbusanstation-pro, sans-serif;
+  font-style: normal;
+  font-weight: 500;
   color: #FFFFFF;
-  font: 100;
 }
 
 .balanceButton {
@@ -63,13 +113,19 @@ img {
 
 /* 짜장, 짬뽕 들어가는 selectbutton 스타일 */
 .selectButton {
+  display: flex;
   padding: 15px 30px 15px 30px;
   background: rgba(255, 108, 217, 1);
   color: #FFFFFF;
   margin: 10px;
-  font-size: 20px;
+  font-size: 7vw;
   border-radius: 30px;
   text-decoration: none;
+  height: 10vh;
+  width: 30vw;
+
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -133,7 +189,7 @@ img {
   border-radius: 50px;
   margin: 5%;
   padding: 5%;
-  width: 40%;
+  max-width: 30vw;
   font-size: medium;
 }
 
@@ -148,6 +204,7 @@ img {
   flex: 1;
   justify-content: center;
   align-items: center;
+  margin-top: -10vh;
 }
 
 
@@ -181,4 +238,24 @@ img {
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+
+/* =============화면 이동 페이지================= */
+.title {
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.40);
+  backdrop-filter: blur(2px);
+  width: 50vw;
+  height: auto;
+  padding: 5vh 10vw;
+  font-size: 5vw;
+}
+
+.exp {
+  border-radius: 50px;
+background: rgba(255, 255, 255, 0.40);
+width: auto;
+height: auto;
+padding: 4vh 15vw;
+
 }

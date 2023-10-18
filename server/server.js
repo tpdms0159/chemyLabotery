@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+const mysql = require('mysql2')
 
 require('dotenv').config();
 
@@ -13,13 +14,7 @@ const secretKey = process.env.JWT_SECRET;
 
 app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json());
-// app.use(cors());
-
-app.use(cors({
-    origin: "*",                // 출처 허용 옵션
-    credentials: true,          // 응답 헤더에 Access-Control-Allow-Credentials 추가
-    optionsSuccessStatus: 200,  // 응답 상태 200으로 설정
-}))
+app.use(cors());
 
 app.use((req, res, next) => {
     if (req.headers.authorization) {
@@ -37,33 +32,6 @@ app.use((req, res, next) => {
     }
 });
 
-app.get("/result", (req, res) => {
-    const token = req.headers.authorization.split(' ')[1]; 
-    console.log("/result");
-    jwt.verify(token, secretKey, (err, user) => {
-        if (err) {
-            console.log(err); // 에러 출력
-            return res.sendStatus(403); // 유효하지 않은 토큰
-        }
-    
-        const username = user.username;
-    
-        // username에 해당하는 userId를 가져와야 함
-        db.query('SELECT numdata FROM userTable WHERE username = ?', [username], function(error, results) {
-            if (error) {
-                console.log(error); // DB 에러 출력
-                return res.status(500).send('Database error');
-            }
-            
-            if (results.length > 0) {
-                const numdata = results[0].numdata; // numdata 가져오기
-                return res.send({ numdata });
-            } else {
-                res.status(404).send('User not found');
-            }
-        });
-    });
-});
 
 
 
@@ -226,13 +194,20 @@ app.post("/ment", (req, res) => {
     const randomNum = req.body.randomNum
     const token = req.headers.authorization.split(' ')[1];
 
+    console.log(
+        "ment: ", ment,
+        "token: ", token,
+        "randNum:" , randomNum
+    );
+
+
     jwt.verify(token, secretKey, (err, user) => {
         if (err) {
             console.log(err); // 에러 출력
             return res.sendStatus(403); // 유효하지 않은 토큰
         }
-
-        const username = user.username;
+        console.log('pass jwt');
+        const username = user.username
 
         // username에 해당하는 userId를 가져와야 함
         db.query('SELECT id FROM userTable WHERE username = ?', [username], function(error, results) {
@@ -240,35 +215,29 @@ app.post("/ment", (req, res) => {
                 console.log(error); // DB 에러 출력
                 return res.status(500).send('Database error');
             }
-
+        
             if (results.length > 0) {
+                console.log('pass find userid');
                 const userId = results[0].id; // 여기서 userId를 정의
 
                 // userId를 사용해서 'mentdata' 컬럼에 데이터 삽입
-                db.query('UPDATE userTable SET mentdata = ? WHERE id = ?', [ment, userId], function(error, results) {
+                db.query('UPDATE userTable SET mentdata = ?, numdata = ? WHERE id = ?', [ment, randomNum, userId], function(error, results) {
+                    res.send('come in userment query');
                     if (error) {
                         console.log(error); // DB 에러 출력
                         return res.status(500).send('Database error');
                     }
-
-                    res.send('Ment inserted for the user');
+                    console.log('pass insert userment');
                 });
-
-                db.query('UPDATE userTable SET numdata = ? WHERE id = ?', [randomNum, userId], function(error, results) {
-                    if (error) {
-                        console.log(error); // DB 에러 출력
-                        return res.status(500).send('Database error');
-                    }
-
-                    res.send('Ment inserted for the user');
-                });
-            } else {
-                res.status(404).send('User not found');
             }
-        });
+            else {
+                return res.status(404).send('User not found');
+            }
+        })
+                
     });
+        
 });
-
 
 
 
@@ -340,7 +309,222 @@ app.post("/signup", (req, res) => {
         sendData.isSuccess = "아이디와 비밀번호를 입력하세요!"
         res.send(sendData)
     }
+});
+
+app.get("/result", (req, res) => {
+    const token = req.headers.authorization.split(' ')[1]; 
+    console.log(token);
+    console.log("/result:type");
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            console.log(err); // 에러 출력
+            return res.sendStatus(403); // 유효하지 않은 토큰
+        }
+        console.log(user);
+        const username = user.username;
+    
+        // username에 해당하는 numdata를 가져와야 함
+        db.query('SELECT numdata FROM userTable WHERE username = ?', [username], function(error, results) {
+            if (error) {
+                console.log(error); // DB 에러 출력
+                return res.status(500).send('Database error');
+            }
+            
+            if (results.length > 0) {
+                
+                const numdata = results[0].numdata; // numdata 가져오기
+                console.log('numdata', numdata);
+                
+                return res.send({numdata});
+            } else {
+                return res.status(404).send('User not found');
+            }
+        });
+    });
 })
+
+
+// 최종 결과 조합 가져오기
+// 본인 정보 가져오기
+app.get('/final/my', (req,res) => {
+    console.log('/final/my');
+    const token = req.headers.authorization.split(' ')[1]; 
+    const friendnum = req.headers.codenum;
+    let myChoice = [];
+    let friendChoice = [];
+    let cnt = 0;
+    console.log(friendnum);
+   
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            console.log(err); // 에러 출력
+            return res.sendStatus(403); // 유효하지 않은 토큰
+        }
+        const username = user.username;
+        
+        // 본인 id 가져오기
+        db.query('SELECT id FROM userTable WHERE username = ?', [username], function(error, results) {
+            if (error) {
+                console.log(error); // DB 에러 출력
+                return res.status(500).send('Database error');
+            }
+            
+            const userid = results[0].id;
+            console.log('userid: ', userid);
+
+            // 본인 balance 게임 결과 & 본인 선택 가치관 & 상대 성격 & 남긴 멘트가져오기
+            var sql1 = 'SELECT balacedata FROM userBalance WHERE userId = ?;';
+            var sql1s = mysql.format(sql1, [userid]);
+
+            var sql2 = 'SELECT value FROM valuedata WHERE userId = ?;';
+            var sql2s = mysql.format(sql2, [userid]);
+
+            var sql3 = 'SELECT value FROM persondata WHERE userId = ?;';
+            var sql3s = mysql.format(sql3, [userid]);
+
+            var sql4 = 'SELECT mentdata FROM userTable WHERE id = ?;';
+            var sql4s = mysql.format(sql4, [userid]);
+            
+            if (results.length > 0){
+                db.query(sql1, [userid], function(error, result) {
+                    if (error) {
+                            console.log(error); // DB 에러 출력
+                            return res.status(500).send('Database error');
+                    }
+
+                    if (result.length > 0) {
+                        myChoice.push(result);
+                        
+                        db.query(sql2, [userid], function (error, result){
+                            if (error) {
+                                console.log(error); // DB 에러 출력
+                                return res.status(500).send('Database error');
+                        }
+                        
+                        });
+                            
+                        }
+                    });
+
+                        return;
+                    }
+    
+                });
+                return;
+            }); 
+        });
+
+
+
+
+
+// 친구 정보 가져오기
+app.get('/final/friend', (req,res) => {
+    console.log('/final/my');
+    const token = req.headers.authorization.split(' ')[1]; 
+    const friendnum = req.headers.codenum;
+
+    let friendChoice = [];
+    let cnt = 0;
+    console.log(friendnum);
+   
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            console.log(err); // 에러 출력
+            return res.sendStatus(403); // 유효하지 않은 토큰
+        }
+   
+        
+        // 본인 id 가져오기
+        db.query('SELECT id FROM userTable WHERE numdata = ?', [friendnum], function(error, results) {
+            if (error) {
+                console.log(error); // DB 에러 출력
+                return res.status(500).send('Database error');
+            }
+            // console.log(results.id);
+            const friendid = results[0].id;
+            console.log('friendid: ', friendid);
+
+            // 본인 balance 게임 결과 & 본인 선택 가치관 & 상대 성격 & 남긴 멘트가져오기
+            var sql1 = 'SELECT balacedata FROM userBalance WHERE userId = ?;';
+
+            var sql2 = 'SELECT value FROM valuedata WHERE userId = ?;';
+            
+            var sql3 = 'SELECT value FROM persondata WHERE userId = ?;';
+            
+            var sql4 = 'SELECT mentdata FROM userTable WHERE id = ?;';
+
+            
+            if (results.length > 0){
+                db.query(sql1, [friendid], function(error, result) {
+                    // console.log(result);
+                    if (error) {
+                            console.log(error); // DB 에러 출력
+                            return res.status(500).send('Database error');
+                    }
+
+                    if (result.length > 0) {
+                        
+                        friendChoice.push(result);
+                        console.log(result);
+                        
+                        db.query(sql2, [friendid], function (error, result){
+                            if (error) {
+                                console.log(error); // DB 에러 출력
+                                return res.status(500).send('Database error');
+                        }
+                            if (result.length > 0) {
+                                
+                                friendChoice.push(result);
+                                db.query(sql3, [friendid], function(error, result) {
+                                    if (error) {
+                                        console.log(error); // DB 에러 출력
+                                        return res.status(500).send('Database error');
+                                }
+                                    if (result.length > 0) {
+                                        
+                                        friendChoice.push(result);
+                                        db.query(sql4, [friendid], function(error, result) {
+                                            if (error) {
+                                                console.log(error); // DB 에러 출력
+                                                return res.status(500).send('Database error');
+                                        }
+                                            if (result.length > 0) {
+                                                friendChoice.push(result);
+                                                // console.log(friendChoice);
+                                                return res.send({friendChoice});
+                                            }
+                                        });
+                                        return;
+                                        console.log('not get out');
+                                    }
+                                });
+                                return;
+                            }
+                        });
+                        return;
+                    }
+    
+                });
+                return;
+            }
+        }); 
+        return;
+    });
+    console.log('정답을 알려줘어');
+    return;
+    
+});
+
+
+
+app.delete ('/delete', (res,req) => {
+
+
+
+})
+
+
 
 app.listen(PORT, (req,res) => {
     console.log(`${PORT}포트가 생성되었습니다.`);

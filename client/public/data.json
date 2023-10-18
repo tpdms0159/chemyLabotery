@@ -2,26 +2,62 @@
     "balance" : [
         {
             "id": 1,
-            "optionFirst" : "짜장",
-            "optionTwo": "짬뽕",
+            "optionFirst" : "아침형인간",
+            "optionTwo": "저녁형인간",
             "select" : 0
         },
         {
             "id": 2,
+            "optionFirst" : "사랑",
+            "optionTwo": "우정",
+            "select" : 0
+        },
+        {
+            "id": 3,
             "optionFirst" : "산",
             "optionTwo": "바다",
             "select" : 0
         },
         {
-            "id": 3,
-            "optionFirst" : "부먹",
-            "optionTwo": "찍먹",
+            "id": 4,
+            "optionFirst" : "문자",
+            "optionTwo": "전화",
             "select" : 0
         },
         {
-            "id": 4,
-            "optionFirst" : "여름",
-            "optionTwo": "겨울",
+            "id": 5,
+            "optionFirst" : "강아지",
+            "optionTwo": "고양이",
+            "select" : 0
+        },
+        {
+            "id": 6,
+            "optionFirst" : "물냉",
+            "optionTwo": "비냉",
+            "select" : 0
+        },
+        {
+            "id": 7,
+            "optionFirst" : "피자",
+            "optionTwo": "치킨",
+            "select" : 0
+        },
+        {
+            "id": 8,
+            "optionFirst" : "짜장",
+            "optionTwo": "짬뽕",
+            "select" : 0
+        },
+        {
+            "id": 9,
+            "optionFirst" : "시골",
+            "optionTwo": "도시",
+            "select" : 0
+        },
+        {
+            "id": 10,
+            "optionFirst" : "버스",
+            "optionTwo": "지하철",
             "select" : 0
         }
     ],
@@ -281,6 +317,59 @@
         {
             "id" : 27,
             "word": "눈치빠른"
+        }
+    ],
+
+    "loading" : [
+        {
+            "id": 1,
+            "title": "취향의 물약",
+            "exp": "취향의 물약을 클릭하세요",
+            "src": "/icons/logo.png"
+        },
+        {
+            "id": 2,
+            "title": "가치의 물약",
+            "exp": "가치의 물약을 클릭하세요",
+            "src": "/icons/logo.png"
+        },
+        {
+            "id": 3,
+            "title": "환상의 물약",
+            "exp": "환상의 물약을 클릭하세요",
+            "src": "/icons/logo.png"
+        }
+    ],
+
+    "resultMent" : [
+        {
+            "id" : 1,
+            "ment1": "이렇게까지 안 맞는다고?",
+            "ment2": "하나부터 열까지 정반대 케미"
+        },
+        {
+            "id" : 2,
+            "ment1": "취향이 비슷한 편은 아닌 듯?",
+            "ment2": "알아가는 케미"
+        },
+        {
+            "id" : 3,
+            "ment1": "좀 다르지만 가끔 통해!",
+            "ment2": "스며드는 케미"
+        },
+        {
+            "id" : 4,
+            "ment1": "딱 절반! 맞는 듯 안 맞는 듯",
+            "ment2": "맞춰가는 케미"
+        },{
+            "id" : 5,
+            "ment1": "우리 꽤 잘 맞는 듯?",
+            "ment2": "찰떡궁합 케미"
+        },
+        {
+            "id" : 6,
+            "ment1": "너만큼 잘 맞는 사람 처음이야",
+            "ment2": "천생연분 케미"
         }
     ]
 

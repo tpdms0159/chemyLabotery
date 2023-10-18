@@ -49,7 +49,7 @@ export default function PersonPage() {
             <div
             className='personpage'
               key={item.id}
-              style={{ background: isSelected ? 'black' : 'gray', color: isSelected ? 'white' : 'black' }} // 선택된 항목을 빨간색으로 표시 (선택에 따라 스타일을 변경할 수 있습니다)
+              style={{ background: isSelected ? '#3688FF' : '#FF6CD9', color: 'white' }} // 선택된 항목을 빨간색으로 표시 (선택에 따라 스타일을 변경할 수 있습니다)
               onClick={() => handleClick(item.id)}
             >
               {item.word}

@@ -22,12 +22,19 @@ export default function BalancePage() {
     return (
       <div>
         <Link to="/value">
+          {/* value 화면으로 넘어가는 page 만들기 */}
+
+
           <button>Value</button>
         </Link>
       </div>
     );
 
   const next = parseInt(id, 10) + 1;
+
+  if (next == 12) {
+    return (<Link to="/balance/loading"></Link>)
+  }
 
   const BalanceData = (value) => {
 
@@ -42,29 +49,52 @@ export default function BalancePage() {
   };
 
   return (
-    <div className="balancePage">
-      <img alt="nonePick" src="/icons/logo.png" />
+    <div className="mainview">
+      <img alt="progress" src={`/icons/progress${id}.png`} />
       <h3>우린 얼마나 잘 맞을까?</h3>
-      <h1>
+      <h3>둘 중 더 선호하는 것을 골라보세요!</h3>
+
+      {/* <h1>
         {data.optionFirst} vs {data.optionTwo}
-      </h1>
+      </h1> */}
+      
       <div className="buttonBox">
+      {next === 11 ? 
         <>
+        
           <Link
             className="selectButton"
-            to={`/balance/${next}`}
+            to={`/balance/loading`}
             onClick={() => BalanceData(1)}
           >
             <div>{data.optionFirst}</div>
           </Link>
           <Link
             className="selectButton"
-            to={`/balance/${next}`}
+            to={`/balance/loading`}
             onClick={() => BalanceData(2)}
           >
             <div>{data.optionTwo}</div>
           </Link>
-        </>
+        </> : 
+         <>
+        
+         <Link
+           className="selectButton"
+           to={`/balance/${next}`}
+           onClick={() => BalanceData(1)}
+         >
+           <div>{data.optionFirst}</div>
+         </Link>
+         <Link
+           className="selectButton"
+           to={`/balance/${next}`}
+           onClick={() => BalanceData(2)}
+         >
+           <div>{data.optionTwo}</div>
+         </Link>
+       </>
+}
       </div>
     </div>
   );
