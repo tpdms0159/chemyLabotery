@@ -37,8 +37,11 @@ const SignupForm = () => {
   };
 
   return (
-    <div className='homeBtn'>
-      <img alt="logo" src="../icons/logo.png" />
+    <div className='mainview'>
+      <img alt="logo" src="../icons/logo.png" style={{
+        width: '50vw',
+        height: 'auto'
+      }}/>
       <form onSubmit={userData}>
         <input
           className="login"
@@ -70,7 +73,8 @@ const SignupForm = () => {
         />
         <br />
         <br />
-        <button type="submit">회원가입</button>
+
+        <button className="moveButton" style={{'color' : 'white', width: "30vw"}} type="submit">회원가입</button>
       </form>
     </div>
   );

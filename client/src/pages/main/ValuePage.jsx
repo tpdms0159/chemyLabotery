@@ -39,16 +39,23 @@ export default function ValuePage() {
 
   return (
     <div className="mainview">
-      <h1>내 인생에서 중요하게 여기는</h1>
-      <h1>가치들을 골라주세요</h1>
       <div>
+        <p>{selectedIds.length} / 5</p>
+        <h3>나의 인생에서는...</h3>
+        <div>
+        <h3>내 인생에서 중요하게 여기는</h3>
+        <h3>가치들을 골라주세요</h3>
+        </div>
+      </div>
+
+      <div >
         {data.map((dataItem) => { 
           const isSelected = selectedIds.includes(dataItem.id);
           return (
             <div
             className="valuepage"
               key={dataItem.id}
-              style={{ background: isSelected ? 'black' : 'gray', color: isSelected ? 'white' : 'black' }}
+              style={{ background: isSelected ?  '#3688FF': "#FF6CD9", color: isSelected ? 'white' : 'black' }}
               onClick={() => handleClick(dataItem.id)}
             >
               {dataItem.word}
@@ -57,7 +64,7 @@ export default function ValuePage() {
         })}
       </div>
       {selectedIds.length === 5 && (
-        <Link to='/person' className="valuenext" onClick={submitValues}>이동</Link>
+        <Link to='/value/finish' className="valuenext" onClick={submitValues}>이동</Link>
       )}
     </div>
   );
