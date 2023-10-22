@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import PageMoveButton from "./Button/PageMoveButton";
 
 const LoginForm = () => {
   const [id, setId] = useState("");
@@ -12,20 +11,18 @@ const LoginForm = () => {
   const userData = (e) => {
     e.preventDefault();
 
-    console.log('userdata');
-
     const user = {
       userId: id,
       userPassword: password,
     };
-    // 로그인 정보 api
+
     axios
       .post("http://localhost:8000/login", user)
       .then((res) => {
         console.log(res);
         if (res.data.isLogin === "True") {
           localStorage.setItem('accessToken', res.data.accessToken);
-          navigate(`/main/${id}`);
+          navigate("/main");
         } else {
           alert(res.data.isLogin);
         }
@@ -36,15 +33,9 @@ const LoginForm = () => {
       });
   };
 
-
- 
   return (
     <div className="mainview">
-      <img alt="logo" src="../icons/logo.png" 
-      style={{
-        width: '170px',
-        height: '170px'
-      }}/>
+      <img alt="logo" src="../icons/logo.png" />
       <form onSubmit={userData}>
         <input
           className="login"
@@ -66,28 +57,9 @@ const LoginForm = () => {
         />
         <br />
         <br />
-   
-        <button className="moveButton" type="submit" style={{width: '283px', height: '60px', fontSize : '20px'}}> 로그인하고 케미 확인하기 </button>
-        <br />
-        <Link to="/signup" className="signBox">
-        <p style={{
-          'width' : '143px',
-           height: '40px', 
-           fontSize: '16px', 
-           color : 'black', 
-           margin: '7px'
-           }}> 아직 계정이 없다면? </p> 
-        <button className="moveButton" style={{
-          width: '100px',
-          height: '37px',
-          padding: '11px 21px',
-          fontSize: '15px',
-          }}
-       > 회원가입 </button>
-        </Link>
-        
+        <p>계정이 없으신가요?</p> <Link to="/signup">회원가입</Link> <br />
+        <button type="submit">로그인</button>
       </form>
-      
     </div>
   );
 };

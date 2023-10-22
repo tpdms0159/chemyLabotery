@@ -6,8 +6,8 @@ const HomePage = () => {
   return (
     <div className='mainview'>
        <img alt='logo' src='../icons/logo.png' />
-       <div style={{ fontWeight: 900}}>
-       <PageMoveButton path="/login" text="회원가입 및 로그인하기" />
+       <div className="homebtn">
+       <PageMoveButton path="/login" text="간편 로그인하기"/>
        </div>
     </div>
   )

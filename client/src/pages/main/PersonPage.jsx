@@ -6,7 +6,6 @@ export default function PersonPage() {
   const [data, setData] = useState([]); // 데이터를 저장할 상태
   const [selectedIds, setSelectedIds] = useState([]); // 선택된 항목의 ID를 저장할 상태
   const token = localStorage.getItem("accessToken");
-  let words = [];
 
   useEffect(() => {
     fetch('/data.json')
@@ -41,53 +40,25 @@ export default function PersonPage() {
 
   return (
     <div className='mainview'>
-
-      <p className="midtitle cntText" >{selectedIds.length} / 3</p>
-        <div className="titleAlign" >
-          <h2 className='subtitle' style={{fontSize: '20px', marginTop: '70px', color: 'black', width: '225px', marginLeft: '20px'}}>내가 그 사람을 떠올리면...</h2>
-          <p className='subtitle' style={{fontSize: '14px', height: '10px', lineHeight: '10px'}}>상대방을 설명하는 키워드를 골라보세요!</p>
-          <img alt='friend' src="/icons/person.png"/>
-      </div>
-
-
-      <div style={{marginTop : '450px'}}>
-        {data.map((data, index) => {
-          
-          words = [...words, data];
-          console.log(words);
-          return(
-            <div >
-            { parseInt(index % 2) === 1 ? 
-            
-            <div className="showBtn"> 
-              {words.map((words) => {
-                
-                console.log(words.word);
-                const isSelected = selectedIds.includes(words.id);
-                return(
-                  <button className="valueBtn personBtn" onClick={() => handleClick(words.id)}
-                  style={{ background: isSelected ? '#3688FF' : '#FF6CD9', color: 'white' }} >  
-                  {words.word}
-                    </button>
-                )
-              })}
-              {words = []}
-              </div> 
-            : null}
+      <h1>내가 그 사람을 떠올리면...</h1>
+      <img alt='person' src='/icons/person.png' />
+      <div>
+        {data.map((item) => {
+          const isSelected = selectedIds.includes(item.id);
+          return (
+            <div
+            className='personpage'
+              key={item.id}
+              style={{ background: isSelected ? 'black' : 'gray', color: isSelected ? 'white' : 'black' }} // 선택된 항목을 빨간색으로 표시 (선택에 따라 스타일을 변경할 수 있습니다)
+              onClick={() => handleClick(item.id)}
+            >
+              {item.word}
             </div>
           );
-        }
-        )
-      }
+        })}
       </div>
-
-
-
-
       {selectedIds.length === 3 && (
-        <Link to="/ment" onClick={submitValues}>
-          <img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/>
-          </Link>
+        <Link className='personnext' to="/ment" onClick={submitValues}>이동</Link>
       )}
     </div>
   );
