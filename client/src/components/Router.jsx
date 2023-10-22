@@ -12,7 +12,6 @@ import PersonPage from '../pages/main/PersonPage';
 import MentToPage from '../pages/main/MentToPage';
 import ResultPage from '../pages/result';
 import FinalResult from './FinalResult';
-import BalanceToValue from './BalanceToValue';
 import MovePage from './MovePage';
 import MentFinish from './MentFinish';
 
@@ -28,7 +27,7 @@ const Router = () => {
         <Route path='/login' element={<LoginPage />}/>
         <Route path='/signup' element={<SignUpPage />}/>
 
-        <Route path='/main' element={<Home />}/>
+        <Route path='/main/:name' element={<Home />}/>
         <Route path='/start' element={<StartPage/>}/>
         {/* 테스트 화면 */}
         <Route path='/balance/:id' element={<BalancePage />}/>

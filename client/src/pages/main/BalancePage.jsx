@@ -49,14 +49,18 @@ export default function BalancePage() {
   };
 
   return (
-    <div className="mainview">
-      <img alt="progress" src={`/icons/progress${id}.png`} />
-      <h3>우린 얼마나 잘 맞을까?</h3>
-      <h3>둘 중 더 선호하는 것을 골라보세요!</h3>
+    <div className="mainview" >
+      <div className="titleAlign" style={{height: '800px', padding: '50px 0' }}>
+      <img alt="progress" src={`/icons/progress${id}.png`} 
+      style={{
+        width: '190px',
+        height: '34px',
+      }
+      } />
 
-      {/* <h1>
-        {data.optionFirst} vs {data.optionTwo}
-      </h1> */}
+      <h2 className="midtitle" >우린 얼마나 잘 맞을까?</h2>
+      <h4 className="subtitle">둘 중 더 선호하는 것을 골라보세요!</h4>
+     
       
       <div className="buttonBox">
       {next === 11 ? 
@@ -94,7 +98,9 @@ export default function BalancePage() {
            <div>{data.optionTwo}</div>
          </Link>
        </>
+       
 }
+      </div>
       </div>
     </div>
   );

@@ -15,18 +15,15 @@ function MovePage(props) {
   }, []);
 
 
-
-
-  console.log(data);
-
-
-
   return (
     <>
     { data.length === 3 && <div className='mainview'> 
       <h1 className='title'> {data[props.index].title} </h1>
-      <p className='exp'> {data[props.index].exp} </p>
-      <Link to={props.link}><img alt="image" src={data[props.index].src} /></Link>
+      <p className='subtitle' > {data[props.index].exp} </p>
+      <Link to={props.link}><img alt="image" src={data[props.index].src} style={{
+        width: 'auto',
+        height: '300px'
+      }}/></Link>
 
    </div> }
    </>

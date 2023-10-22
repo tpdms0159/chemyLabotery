@@ -12,18 +12,20 @@ const LoginForm = () => {
   const userData = (e) => {
     e.preventDefault();
 
+    console.log('userdata');
+
     const user = {
       userId: id,
       userPassword: password,
     };
-
+    // 로그인 정보 api
     axios
       .post("http://localhost:8000/login", user)
       .then((res) => {
         console.log(res);
         if (res.data.isLogin === "True") {
           localStorage.setItem('accessToken', res.data.accessToken);
-          navigate("/main");
+          navigate(`/main/${id}`);
         } else {
           alert(res.data.isLogin);
         }
@@ -34,11 +36,14 @@ const LoginForm = () => {
       });
   };
 
+
+ 
   return (
     <div className="mainview">
-      <img alt="logo" src="../icons/logo.png" style={{
-        width: '50vw',
-        height: 'auto'
+      <img alt="logo" src="../icons/logo.png" 
+      style={{
+        width: '170px',
+        height: '170px'
       }}/>
       <form onSubmit={userData}>
         <input
@@ -61,11 +66,24 @@ const LoginForm = () => {
         />
         <br />
         <br />
-        <button className="moveButton" type="submit" style={{'color': "white", 'fontSize' : '20px'}}> 로그인하고 케미 확인하기 </button>
+   
+        <button className="moveButton" type="submit" style={{width: '283px', height: '60px', fontSize : '20px'}}> 로그인하고 케미 확인하기 </button>
         <br />
         <Link to="/signup" className="signBox">
-        <p style={{'width' : '100vw', 'color' : 'black'}}> 아직 계정이 없다면? </p> <button className="moveButton"
-       style={{ 'height' : "auto", 'color' : "white", 'fontSize' : '16px'}}> 회원가입 </button>
+        <p style={{
+          'width' : '143px',
+           height: '40px', 
+           fontSize: '16px', 
+           color : 'black', 
+           margin: '7px'
+           }}> 아직 계정이 없다면? </p> 
+        <button className="moveButton" style={{
+          width: '100px',
+          height: '37px',
+          padding: '11px 21px',
+          fontSize: '15px',
+          }}
+       > 회원가입 </button>
         </Link>
         
       </form>
