@@ -27,15 +27,20 @@ export default function MentToPage() {
 
   return (
     <div className='mainview'>
-      <img alt="상대물약4" src="/icons/friendMedicine4.png" />
-      <div>
-        <h3>상대에게 전할 한마디를 적어주세요</h3>
+      <img alt="상대물약4" src="/icons/finishMy.png" />
+        <p className='greyFont' style={{marginBottom: 0}}>거의 제조가 끝나가요!</p>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <p>상대에게 전할 한마디</p>
+        <p className='greyFont'>를 적어주세요</p>
       </div>
+     
 
 
      
       <input type="text" placeholder='마지막 한마디 적기' onChange={(e)=>setText(e.target.value)} />
-      <Link to='/ment/loading' onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' style={{width : "20vw", margin: "5vh"}}/></Link>
+      {text.length != 0 ? <Link to='/ment/loading' onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/></Link>
+        : ""}
+      
 
 
     </div>

@@ -74,7 +74,7 @@ const SignupForm = () => {
         <br />
         <br />
 
-        <button className="moveButton" style={{'color' : 'white', width: "30vw"}} type="submit">회원가입</button>
+        <button className="moveButton" style={{}} type="submit">회원가입</button>
       </form>
     </div>
   );
