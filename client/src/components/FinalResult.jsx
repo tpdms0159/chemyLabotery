@@ -37,6 +37,7 @@ const FinalResult = () => {
     fetch("/data.json")
       .then((res) => res.json())
       .then((res) => {
+        console.log('response: ',res);
 
         setData(res);
       })
@@ -75,7 +76,7 @@ const FinalResult = () => {
       update();
       
 
-  }, []);
+  }, [tempMent1]);
 
   function update()  {
     
@@ -104,9 +105,10 @@ const FinalResult = () => {
         showPerson.push(friend[2][i].value);
       }
 
-
-      // 온도에 따른 멘트보여주기
-      if (data.resultMent.length === 6) {
+      console.log('giveme: ', data);
+      // 온도에 따른 멘트보여주기 tmep = 4
+  
+      if (data.resultMent.length === 7) {
         const resultMent = data.resultMent;
         username = my[0];
         if (temp === 0){
@@ -115,7 +117,6 @@ const FinalResult = () => {
         }
         else if (temp <= 5) {
           const ind = parseInt((temp+1) / 2);
-          console.log(ind);
           tempMent1 = resultMent[ind].ment1;
           tempMent2 = resultMent[ind].ment2;
         }
@@ -130,6 +131,8 @@ const FinalResult = () => {
 }
 
   update();
+  console.log(tempMent1);
+  console.log(tempMent1);
 
   const handleCopyClipBoard = async (text) => {
     try {

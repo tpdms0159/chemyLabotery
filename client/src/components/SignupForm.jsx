@@ -39,9 +39,9 @@ const SignupForm = () => {
   return (
     <div className='mainview'>
       <img alt="logo" src="../icons/logo.png" style={{
-        width: '50vw',
-        height: 'auto'
-      }}/>
+        width: '250px',
+        height: 'auto',
+      }} className="img3"/>
       <form onSubmit={userData}>
         <input
           className="login"

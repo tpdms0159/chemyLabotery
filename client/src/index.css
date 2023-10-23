@@ -13,12 +13,14 @@
   font-style: normal;
 }
 
-
+html {
+  height: 100%;
+}
 body {
   margin: 0;
   background-image: url(/public/icons/backgroundBorder.png), url(/public/icons/backgroundImg.png) ;
   background-repeat: no-repeat, no-repeat;
-  background-size: cover, 2000px 100%;
+  background-size: 100% 100%, 100% 100%;
   background-attachment: fixed, scroll;
 }
 
