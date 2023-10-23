@@ -22,6 +22,9 @@ export default function BalancePage() {
     return (
       <div>
         <Link to="/value">
+          {/* value 화면으로 넘어가는 page 만들기 */}
+
+
           <button>Value</button>
         </Link>
       </div>
@@ -29,10 +32,14 @@ export default function BalancePage() {
 
   const next = parseInt(id, 10) + 1;
 
+  if (next == 12) {
+    return (<Link to="/balance/loading"></Link>)
+  }
+
   const BalanceData = (value) => {
 
     console.log(value);
-    axios.post("http://localhost:8000/balance", { value }, {
+    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/balance", { value }, {
       headers: {
         Authorization: `Bearer ${token}` // 헤더에 토큰 포함해서 요청 보내기
       }
@@ -42,29 +49,58 @@ export default function BalancePage() {
   };
 
   return (
-    <div className="balancePage">
-      <img alt="nonePick" src="/icons/logo.png" />
-      <h3>우린 얼마나 잘 맞을까?</h3>
-      <h1>
-        {data.optionFirst} vs {data.optionTwo}
-      </h1>
+    <div className="mainview" >
+      <div className="titleAlign" style={{height: '800px', padding: '50px 0', margin: '0px' }}>
+      <img alt="progress" src={`/icons/progress${id}.png`} 
+      style={{
+        width: '190px',
+        height: '34px',
+      }
+      } />
+
+      <h2 className="midtitle" >우린 얼마나 잘 맞을까?</h2>
+      <h4 className="subtitle" style={{marginLeft: '-5px'}}>둘 중 더 선호하는 것을 골라보세요!</h4>
+     
+      
       <div className="buttonBox">
+      {next === 11 ? 
         <>
+        
           <Link
             className="selectButton"
-            to={`/balance/${next}`}
+            to={`/balance/loading`}
             onClick={() => BalanceData(1)}
           >
             <div>{data.optionFirst}</div>
           </Link>
           <Link
             className="selectButton"
-            to={`/balance/${next}`}
+            to={`/balance/loading`}
             onClick={() => BalanceData(2)}
           >
             <div>{data.optionTwo}</div>
           </Link>
-        </>
+        </> : 
+         <>
+        
+         <Link
+           className="selectButton"
+           to={`/balance/${next}`}
+           onClick={() => BalanceData(1)}
+         >
+           <div>{data.optionFirst}</div>
+         </Link>
+         <Link
+           className="selectButton"
+           to={`/balance/${next}`}
+           onClick={() => BalanceData(2)}
+         >
+           <div>{data.optionTwo}</div>
+         </Link>
+       </>
+       
+}
+      </div>
       </div>
     </div>
   );

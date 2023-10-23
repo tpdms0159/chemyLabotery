@@ -3,14 +3,24 @@ import PageMoveButton from '../../components/Button/PageMoveButton'
 
 export default function StartPage() {
   return (
-    <div className='startPage'>
-    <img alt='startMedicine' src='../icons/startMedicine.png' />
-    <div className='startText'>
-      <span>나의 물약을 제조한 후</span>
-      <span>상대와 섞어</span>
-      <span>케미를 확인해보세요!</span>
+    <div className='mainview'>
+    <img alt='startMedicine' src='../icons/startIcon.png' className='img3' />
+    <div style={{margin: '20px'}}>
+    <div className='linebox' style={{height: '10px'}}>
+      <p>나의 물약을 제조</p>
+      <p className='greyFont'>한 후</p>
     </div>
-    <PageMoveButton path="/balance/1" text="나의 물약 제조하기" />
-    </div>
+
+    <p className='greyFont' style={{margin: '8px'}}>상대와 섞어</p>
+
+    <div className='linebox' style={{height: '10px'}}>
+      <p >케미</p>
+      <p className='greyFont'>를 확인해보세요!</p>
+      </div>
+   
+
+  </div>
+  <PageMoveButton path="/start/loading" text="나의 물약 제조하기" />
+  </div>
   )
 }

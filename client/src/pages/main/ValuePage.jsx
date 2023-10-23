@@ -7,6 +7,8 @@ export default function ValuePage() {
   const [selectedIds, setSelectedIds] = useState([]);
   const token = localStorage.getItem("accessToken");
 
+  let words = [];
+
   useEffect(() => {
     fetch('/data.json')
       .then(res => res.json())
@@ -25,7 +27,7 @@ export default function ValuePage() {
   };
 
   const submitValues = () => {
-    axios.post("http://localhost:8000/values", 
+    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/values", 
                 { values: selectedIds }, 
                 {
                     headers: {
@@ -36,28 +38,55 @@ export default function ValuePage() {
         .catch(error => console.error(error));
   };
   
-
+  
   return (
     <div className="mainview">
-      <h1>내 인생에서 중요하게 여기는</h1>
-      <h1>가치들을 골라주세요</h1>
-      <div>
-        {data.map((dataItem) => { 
-          const isSelected = selectedIds.includes(dataItem.id);
-          return (
-            <div
-            className="valuepage"
-              key={dataItem.id}
-              style={{ background: isSelected ? 'black' : 'gray', color: isSelected ? 'white' : 'black' }}
-              onClick={() => handleClick(dataItem.id)}
-            >
-              {dataItem.word}
+      
+        <p className="midtitle cntText" >{selectedIds.length} / 5</p>
+        <div className="titleAlign">
+          <h2 className='subtitle' style={{fontSize: '20px', marginTop: '120px', color: 'black'}}>나의 인생에서는...</h2>
+          <p className="subtitle" style={{
+            height: "30px"
+          }}> 
+          내 인생에서 중요하게 여기는
+              <br/>
+              가치들을 골라보세요!
+    
+          </p>
+      </div>
+
+      <div style={{marginTop : '180px'}}>
+        {data.map((data, index) => {          
+          words = [...words, data];
+          return(
+            <div >
+            { parseInt(index % 3) === 2 ? 
+            
+            <div className="showBtn"> 
+              {words.map((words) => {
+                const isSelected = selectedIds.includes(words.id);
+                return(
+                  <button key={words.id} className="valueBtn" onClick={() => handleClick(words.id)}
+                  style={{ background: isSelected ? '#3688FF' : '#FF6CD9', color: 'white' }} >  
+                  {words.word}
+                    </button>
+                )
+              })}
+              {words = []}
+              </div> 
+            : null}
             </div>
           );
-        })}
+        }
+        )
+      }
       </div>
+
+       
       {selectedIds.length === 5 && (
-        <Link to='/person' className="valuenext" onClick={submitValues}>이동</Link>
+        <Link to='/value/finish' className="valuenext" onClick={submitValues}>
+          <img alt="blueArrow" src="/icons/blueArrow.png" className="blueArrow"/>
+        </Link>
       )}
     </div>
   );
