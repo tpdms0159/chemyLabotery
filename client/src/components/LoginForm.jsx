@@ -18,7 +18,7 @@ const LoginForm = () => {
     };
     // 로그인 정보 api
     axios
-      .post("http://chemylab.shop/login", user)
+      .post("https://chemylab.shop/login", user)
       .then((res) => {
         if (res.data.isLogin === "True") {
           localStorage.setItem('accessToken', res.data.accessToken);
