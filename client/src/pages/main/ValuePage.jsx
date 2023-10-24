@@ -27,7 +27,7 @@ export default function ValuePage() {
   };
 
   const submitValues = () => {
-    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/values", 
+    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/values", 
                 { values: selectedIds }, 
                 {
                     headers: {
@@ -55,7 +55,7 @@ export default function ValuePage() {
           </p>
       </div>
 
-      <div style={{marginTop : '180px'}}>
+      <div style={{margin : '180px 0 50px 0'}}>
         {data.map((data, index) => {          
           words = [...words, data];
           return(

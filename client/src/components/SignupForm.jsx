@@ -20,7 +20,7 @@ const SignupForm = () => {
     };
 
     axios
-      .post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/signup", user)
+      .post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/signup", user)
       .then((res) => {
         console.log(res);
         if (res.data.isSuccess === "True") {

@@ -11,7 +11,7 @@ const ResultForm = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
-        axios.get('http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/result', {
+        axios.get('http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/result', {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 // 'codenum': {friendnum}

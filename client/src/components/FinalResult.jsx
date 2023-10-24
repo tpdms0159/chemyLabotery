@@ -45,7 +45,7 @@ const FinalResult = () => {
 
     // 본인 정보 가져오기
     axios
-      .get("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/final/my", {
+      .get("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/final/my", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,7 +60,7 @@ const FinalResult = () => {
 
     // 친구 정보 가져오기
     axios
-      .get("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/final/friend", {
+      .get("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/final/friend", {
         headers: {
           Authorization: `Bearer ${token}`,
           codenum: `${friendnum}`,

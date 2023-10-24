@@ -26,7 +26,7 @@ export default function PersonPage() {
   };
 
   const submitValues = () => {
-    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/person", 
+    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/person", 
                 { values: selectedIds }, 
                 {
                     headers: {
@@ -50,7 +50,7 @@ export default function PersonPage() {
       </div>
 
 
-      <div style={{marginTop : '450px'}}>
+      <div style={{margin : '450px 0 50px 0'}}>
         {data.map((data, index) => {
           
           words = [...words, data];

@@ -20,7 +20,7 @@ const LoginForm = () => {
     };
     // 로그인 정보 api
     axios
-      .post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/login", user)
+      .post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/login", user)
       .then((res) => {
         console.log(res);
         if (res.data.isLogin === "True") {

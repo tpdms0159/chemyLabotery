@@ -15,7 +15,7 @@ export default function MentToPage() {
 
   const coMent = () => {
     const randomNum = generateRandomNumber();
-    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com/ment", {text : text, randomNum:randomNum},                {
+    axios.post("http://ec2-52-78-9-158.ap-northeast-2.compute.amazonaws.com:443/ment", {text : text, randomNum:randomNum},                {
       headers: {
           'Authorization': `Bearer ${token}`  // Include the token here
       }
