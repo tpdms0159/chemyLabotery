@@ -154,7 +154,7 @@ const FinalResult = () => {
       
       <img alt="ondo" src={`/icons/ondo${temp}.png`} className="img3" style={{width: '250px', height: '210px', margin: '30px'}} />
 
-      <div className="midtitle" style={{ padding: '20px', width: '180px', height: '100px', margin: '0px'}}>
+      <div className="midtitle" style={{ padding: '20px', width: '180px', height: '100px', margin: '30px'}}>
         <p className="greyFont" style={{fontSize: '20px'}}>우리의 취향 온도</p>
         <p style={{fontSize: '30px'}}>{temp * 10} °C</p>
       </div>
