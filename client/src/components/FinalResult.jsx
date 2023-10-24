@@ -95,8 +95,8 @@ const FinalResult = () => {
         if (my[2][i].value === friend[1][i].value) {
           showOver.push(my[2][i].value);
         } else {
-          showFriend.push(my[2][i].value);
-          showMy.push(friend[1][i].value);
+          showFriend.push(friend[1][i].value);
+          showMy.push(my[2][i].value);
         }
       }
 
@@ -131,8 +131,8 @@ const FinalResult = () => {
 }
 
   update();
-  console.log(tempMent1);
-  console.log(tempMent1);
+  console.log(showMy);
+  console.log(showFriend);
 
   const handleCopyClipBoard = async (text) => {
     try {
@@ -180,8 +180,8 @@ const FinalResult = () => {
           <div className="keyword" style={{color: 'rgba(234, 142, 220, 1)'}}>
           {showMy.length > 0 &&
             showMy.map((personIndex, index) => {
-              const showmy = data.value[personIndex - 1];
-              return <div key={index}>{showmy && showmy.word}</div>;
+              const my = data.value[personIndex - 1];
+              return <div key={index}>{my && my.word}</div>;
             })}
           </div>
         <br></br>
