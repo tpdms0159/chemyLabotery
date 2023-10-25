@@ -58,6 +58,8 @@ input {
   /* margin: 20px 10px 20px 15px; */
   color: black;
   padding: 20px 28px 20px 28px;
+  font-family: GmarketSansMedium;
+  font-size: 15px;
 }
 
 .login {
@@ -223,7 +225,8 @@ input {
   height: 60px;
   color: white;
   font-size: 18px;
-  font-weight: 300;
+  font-family: GmarketSansMedium;
+  font-weight: 500;
   border-radius: 50px;
   margin: 5px;
   text-align: center;
@@ -387,7 +390,7 @@ input {
 }
 
 .blueArrow {
-  margin: 3px;
+  margin-bottom: 50px;
   width: auto;
   height: auto;
 }
@@ -448,7 +451,7 @@ input {
 }
 .showpersontext {
   font-size: 15px;
-  font-weight: bolder;
+  /* font-weight: bolder; */
 }
 
 .friendsay {

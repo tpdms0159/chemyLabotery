@@ -5,15 +5,17 @@ import PageMoveButton from "./Button/PageMoveButton";
 
 const FinalResult = () => {
   const location = useLocation();
-  const url = window.location.href;
   const queryParams = new URLSearchParams(location.search);
   const friendnum = queryParams.get("friendnum");
   const token = localStorage.getItem("accessToken");
-  // const [temp, setTemp] = useState(0);
+  const url = 'https://chemylaboratory.swygbro.com';
   const [my, setMy] = useState([]);
   const [friend, setFriend] = useState([]);
   let tempMent1 = '';
   let tempMent2 = '';
+
+  let sortMy = [];
+  let sortFrient = [];
 
   const [data, setData] = useState([]);
 
@@ -90,14 +92,24 @@ const FinalResult = () => {
       }
 
       // 일치하는 가치관 찾기
+      // 정렬하기
+      console.log(my[2]);
+      console.log(friend[1]);
       for (let i = 0; i < 5; i++) {
-        if (my[2][i].value === friend[1][i].value) {
-          showOver.push(my[2][i].value);
-        } else {
-          showFriend.push(friend[1][i].value);
-          showMy.push(my[2][i].value);
+        for (let j = 0; j < 5; j++) {
+          if (my[2][i].value == friend[1][j].value){
+            showOver.push(my[2][i].value);
+          }
         }
+        showFriend.push(friend[1][i]);
+        showMy.push(my[2][i]);
       }
+
+      for (let i = 0; i < showOver.length; i++) {
+        showMy.pop(showOver[i]);
+        showFriend.pop(showOver[i]);
+      }
+      console.log('showmy, showfriend: ',showMy, showFriend);
 
       // 상대의 성격 보여주기
       for (let i = 0; i < 3; i++) {
@@ -176,7 +188,7 @@ const FinalResult = () => {
           <div className="keyword" style={{color: 'rgba(234, 142, 220, 1)'}}>
           {showMy.length > 0 &&
             showMy.map((personIndex, index) => {
-              const my = data.value[personIndex - 1];
+              const my = data.value[personIndex.value - 1];
               return <div key={index}>{my && my.word}</div>;
             })}
           </div>
@@ -194,7 +206,7 @@ const FinalResult = () => {
           <div className="keyword" style={{color: 'rgba(105, 172, 248, 1)'}}>
           {showFriend.length > 0 &&
             showFriend.map((personIndex, index) => {
-              const friend = data.value[personIndex - 1];
+              const friend = data.value[personIndex.value - 1];
               return <div key={index}>{friend && friend.word}</div>;
             })}
           </div>
@@ -202,7 +214,7 @@ const FinalResult = () => {
       </div>
 
       <div >
-        <h3 className="midtitle" style={{marginTop: '100px'}}>상대가 보는 나는...</h3>
+        <h2 style={{marginTop: '100px'}}>상대가 보는 나는...</h2>
         <div className="linebox" style={{height: '50px', margin: 0, marginBottom: '80px'}}>
         {showPerson.length > 0 &&
           showPerson.map((personIndex, index) => {
@@ -211,7 +223,7 @@ const FinalResult = () => {
               {person && person.word}{index+1 === showPerson.length ? '' : ','}&nbsp;</div>;
           })}
           <p> </p>
-          <p className="greyFont" style={{fontSize: '18px'}}>   &nbsp;사람 </p>
+          <p className="greyFont" style={{fontSize: '16px'}}>&nbsp;사람 </p>
           </div>
       </div>
         
@@ -242,7 +254,7 @@ const FinalResult = () => {
       </div>
 
       <div>
-      <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard(`${url}`)}>URL 공유하기</button> 
+      <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
         <PageMoveButton path={`/main/${username}`} text="메인 화면으로 돌아가기" />
       </div>
     </div>

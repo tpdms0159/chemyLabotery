@@ -2,6 +2,7 @@ import React from 'react'
 import PageMoveButton from '../../components/Button/PageMoveButton'
 
 function FinishMy() {
+  
   return (
     <div className='mainview'>
         <h1 className='title' style={{

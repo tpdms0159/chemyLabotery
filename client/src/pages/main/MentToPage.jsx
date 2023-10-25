@@ -14,8 +14,14 @@ export default function MentToPage() {
   
 
   const coMent = () => {
+    console.log(text.length);
+    if (text.length > 20) {
+      alert("20자 이하로 입력해주세요");
+      navigator("/ment");
+    }
+    else {
     const randomNum = generateRandomNumber();
-    axios.post("https://chemylab.shop/ment", {text : text, randomNum:randomNum},                {
+    axios.post("https://chemylab.shop/ment", {text : text, randomNum:randomNum}, {
       headers: {
           'Authorization': `Bearer ${token}`  // Include the token here
       }
@@ -23,6 +29,7 @@ export default function MentToPage() {
   .then(response => console.log(response.data))
   .catch(error => console.error(error));
   }
+}
 
 
   return (
@@ -33,12 +40,9 @@ export default function MentToPage() {
         <p>상대에게 전할 한마디</p>
         <p className='greyFont'>를 적어주세요</p>
       </div>
-     
 
-
-     
       <input type="text" placeholder='마지막 한마디 적기' onChange={(e)=>setText(e.target.value)} />
-      {text.length != 0 ? <Link to='/ment/loading' onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/></Link>
+      {text.length != 0 ? <Link to={text.length > 20 ? '' : '/ment/loading'} onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/></Link>
         : ""}
       
 

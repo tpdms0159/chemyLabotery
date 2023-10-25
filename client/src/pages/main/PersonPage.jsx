@@ -78,14 +78,11 @@ export default function PersonPage() {
       }
       </div>
 
-
-
-
-      {selectedIds.length === 3 && (
+      {selectedIds.length === 3 ?  (
         <Link to="/ment" onClick={submitValues}>
           <img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/>
           </Link>
-      )}
+      ) : <div style={{height: '118px'}} />}
     </div>
   );
 }

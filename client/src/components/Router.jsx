@@ -14,6 +14,7 @@ import ResultPage from '../pages/result';
 import FinalResult from './FinalResult';
 import MovePage from './MovePage';
 import MentFinish from './MentFinish';
+import ScrollToTop from './SrollToTop';
 
 
 
@@ -21,6 +22,8 @@ import MentFinish from './MentFinish';
 
 const Router = () => {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
         {/* 기본 화면 & 로그인 & 회원가입 */}
         <Route path='/' element ={<HomePage />}/>
@@ -47,6 +50,7 @@ const Router = () => {
 
         <Route path="*" element={<Navigate replace to={"/"} />} />
     </Routes>
+    </>
   )
 }
 

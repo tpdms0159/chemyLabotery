@@ -10,22 +10,25 @@ function MainPage() {
   const { name } = useParams();
   const [response, setResponse] = useState('');
   const navigate = useNavigate();
+  let test = [1,3,6,4];
+  test = test.sort;
+  console.log(test);
 
   const deleteData =  (cnt) => {
     axios.get(`https://chemylab.shop/find/${name}`)
     .then(res => {
       // 테스트를 처음하는 경우
-      if (res.data.length == 0) { 
+      if (res.data.length === 0) { 
         if(cnt == 1) {
           navigate("/start");
         }
-        else if (cnt == 2 || cnt == 0) {
+        else if (cnt === 2 || cnt === 0) {
           alert("테스트를 먼저 진행해주세요!");
           navigate("/start");
         }
       }
 
-      // 테스 경험이 있는 경우
+      // 테스트 경험이 있는 경우
       else {
         if (cnt == 1) {
           // 테스트 기록 삭제 확인

@@ -83,11 +83,11 @@ export default function ValuePage() {
       </div>
 
        
-      {selectedIds.length === 5 && (
+      {selectedIds.length === 5 ? (
         <Link to='/value/finish' className="valuenext" onClick={submitValues}>
           <img alt="blueArrow" src="/icons/blueArrow.png" className="blueArrow"/>
         </Link>
-      )}
+      ): <div style={{height: '122px'}} />}
     </div>
   );
 }
