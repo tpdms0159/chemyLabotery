@@ -203,7 +203,7 @@ const FinalResult = () => {
 
       <div >
         <h3 className="midtitle" style={{marginTop: '100px'}}>상대가 보는 나는...</h3>
-        <div className="linebox" style={{height: '50px', marginBottom: '80px'}}>
+        <div className="linebox" style={{height: '50px', margin: 0, marginBottom: '80px'}}>
         {showPerson.length > 0 &&
           showPerson.map((personIndex, index) => {
             const person = data.person[personIndex - 1];
@@ -211,7 +211,7 @@ const FinalResult = () => {
               {person && person.word}{index+1 === showPerson.length ? '' : ','}&nbsp;</div>;
           })}
           <p> </p>
-          <p className="greyFont" style={{fontSize: '20px'}}>   &nbsp;사람 </p>
+          <p className="greyFont" style={{fontSize: '18px'}}>   &nbsp;사람 </p>
           </div>
       </div>
         

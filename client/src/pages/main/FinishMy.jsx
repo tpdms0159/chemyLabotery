@@ -12,8 +12,8 @@ function FinishMy() {
         <img alt='finishmy'src='/icons/finishMy.png' className='img3' />
 
         <div style={{display: 'flex', flexDirection: 'row'}}>
-        <p className='greyFont'>이제</p>
-        <p>상대의 물약</p>
+        <p className='greyFont'>이제  </p>
+        <p>&nbsp;상대의 물약</p>
         <p className='greyFont'>을 제조할 차례예요.</p>
         </div>
 

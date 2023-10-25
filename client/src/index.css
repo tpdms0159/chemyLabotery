@@ -8,7 +8,7 @@
 /* 땅스부대지개 */
 @font-face {
   font-family: 'TTTtangsbudaejjigaeB';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2') format('woff2');
+  src: url(/public/font/땅스부대찌개OTF.otf);
   font-weight: normal;
   font-style: normal;
 }
@@ -20,7 +20,7 @@ html {
   background-image: url(/public/icons/backgroundBorder.png), url(/public/icons/backgroundImg.png);
   background-attachment: fixed, fixed;
   background-repeat: no-repeat;
-  background-size: 100% 100%, 100% 100vh;
+  background-size: 100vw 100%, 100vw 100%;
 }
 
 /* =============이미지 사이즈 조절================= */
@@ -222,7 +222,8 @@ input {
   width: 100px;
   height: 60px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 300;
   border-radius: 50px;
   margin: 5px;
   text-align: center;
@@ -302,7 +303,7 @@ input {
 
   color: #000;
   text-align: center;
-  font-family: Ttangsbudaejjigae OTF;
+  font-family: TTTtangsbudaejjigaeB;
 
   font-style: normal;
   line-height: 50px;
@@ -446,7 +447,7 @@ input {
   font-size: '40px';
 }
 .showpersontext {
-  font-size: 19px;
+  font-size: 15px;
   font-weight: bolder;
 }
 
