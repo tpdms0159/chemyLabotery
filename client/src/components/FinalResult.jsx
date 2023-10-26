@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PageMoveButton from "./Button/PageMoveButton";
+import jwt_decode from "jwt-decode";
+import { isObject } from "util";
+
 
 const FinalResult = () => {
   const location = useLocation();
@@ -14,6 +17,12 @@ const FinalResult = () => {
   const [friend, setFriend] = useState([]);
   let tempMent1 = '';
   let tempMent2 = '';
+
+    //jwt decode
+    const jwtencode = localStorage.getItem("accessToken");
+    const tokenDecode = jwtencode;
+    const decoded = jwt_decode(tokenDecode);
+    const usernameDecode = decoded.username; 
 
   const [data, setData] = useState([]);
 
@@ -58,7 +67,6 @@ const FinalResult = () => {
         return console.error(error);
       });
 
-      console.log("djlfdsljfl", friendnum);
     // 친구 정보 가져오기
     axios
       .get("https://chemylab.shop/final/friend", {
@@ -92,13 +100,33 @@ const FinalResult = () => {
 
       // 일치하는 가치관 찾기
       for (let i = 0; i < 5; i++) {
-        if (my[2][i].value === friend[1][i].value) {
-          showOver.push(my[2][i].value);
-        } else {
-          showFriend.push(friend[1][i].value);
-          showMy.push(my[2][i].value);
+        for (let j = 0; j < 5; j++) {
+          if (my[2][i].value === friend[1][j].value) {
+            showOver.push(friend[1][j].value);
+          }
+        }
+        showMy.push(my[2][i].value)
+        showFriend.push(friend[1][i].value);
+      }
+
+      // 겹치는 가치관 제거
+
+      for (let i = 0; i < showOver.length; i++) {
+        for (let j = 0; j < 5; j++) {
+          
+          if (showOver[i] === showMy[j]) {
+            console.log('my & over: ',showOver[i] );
+            showMy.splice(j,1);
+          }
+          if (showOver[i] === showFriend[j]) {
+            showFriend.splice(j,1);
+          }
         }
       }
+      
+      console.log('showmy:', showMy);
+      console.log('showFriend:', showFriend);
+      console.log('showOver:', showOver);
 
       // 상대의 성격 보여주기
       for (let i = 0; i < 3; i++) {
@@ -140,6 +168,8 @@ const FinalResult = () => {
     }
   };
 
+  
+
   return (
    
 
@@ -180,7 +210,7 @@ const FinalResult = () => {
           <div className="keyword" style={{color: 'rgba(234, 142, 220, 1)'}}>
           {showMy.length > 0 &&
             showMy.map((personIndex, index) => {
-              const my = data.value[personIndex.value - 1];
+              const my = data.value[personIndex - 1];
               return <div key={index}>{my && my.word}</div>;
             })}
           </div>
@@ -189,6 +219,9 @@ const FinalResult = () => {
           <div className="keyword" style={{color: 'rgba(152, 96, 205, 1)'}}>
           {showOver.length > 0 &&
             showOver.map((personIndex, index) => {
+              // console.log('showOver:', showOver);
+              // console.log('personIndex', personIndex);
+              // console.log('index', index);
               const showover = data.value[personIndex - 1];
               return <div key={index}>{showover && showover.word}</div>;
             })}
@@ -198,7 +231,7 @@ const FinalResult = () => {
           <div className="keyword" style={{color: 'rgba(105, 172, 248, 1)'}}>
           {showFriend.length > 0 &&
             showFriend.map((personIndex, index) => {
-              const friend = data.value[personIndex.value - 1];
+              const friend = data.value[personIndex - 1];
               return <div key={index}>{friend && friend.word}</div>;
             })}
           </div>
@@ -247,7 +280,7 @@ const FinalResult = () => {
 
       <div className="titleBox">
       <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
-        <PageMoveButton path={`/main/${username}`} text="메인 화면으로 돌아가기" />
+      <PageMoveButton path={`/main/${usernameDecode}`} text="메인 화면으로 돌아가기" />
       </div>
     </div>
  

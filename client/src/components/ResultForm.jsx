@@ -4,14 +4,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import FriendResult from './FinalResult';
 import PageMoveButton from './Button/PageMoveButton';
 import { ThemeContext } from './MainPage';
+import jwt_decode from "jwt-decode";
 
 const ResultForm = () => {
     const [numdate, setNumdate] = useState("");
     const [friendnum, setFriendnum] = useState("");
-    const { name } = useContext(ThemeContext);
     const url = window.location.href;
     const navigate = useNavigate();
-    console.log(name);
+
+    //jwt decode
+    const jwtencode = localStorage.getItem("accessToken");
+    const tokenDecode = jwtencode;
+    const decoded = jwt_decode(tokenDecode);
+    const usernameDecode = decoded.username; 
+
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
@@ -22,7 +28,6 @@ const ResultForm = () => {
             }   
         })
         .then(res  => {
-            console.log(res.data);
            setNumdate(res.data.numdata);
         })
         .catch(error => {
@@ -42,8 +47,6 @@ const ResultForm = () => {
 
     const findNumdata = () => {
         const token = localStorage.getItem("accessToken");
-        console.log("token", token);
-        console.log("numdata", friendnum);
 
         axios
         .get("https://chemylab.shop/final/friend", {
@@ -80,7 +83,7 @@ const location = useLocation();
             
 
             <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
-            <PageMoveButton path={`/main/${name}`} text="메인 화면으로 돌아가기" />
+            <PageMoveButton path={`/main/${usernameDecode}`} text="메인 화면으로 돌아가기" />
             <p className='greyFont' style={{marginBottom: '100px'}}>메인화면으로 돌아가도 코드는 저장됩니다.</p>
 
             

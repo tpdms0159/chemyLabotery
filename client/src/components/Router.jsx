@@ -32,22 +32,22 @@ const Router = () => {
         <Route path='/signup' element={<SignUpPage />}/>
 
         <Route path='/main/:name' element={<Home />}/>
-        <Route path='/:name/start' element={<StartPage/>}/>
+        <Route path='/start' element={<StartPage/>}/>
         {/* 테스트 화면 */}
-        <Route path='/:name/balance/:id/' element={<BalancePage />}/>
-        <Route path='/:name/value' element={<ValuePage />}/>
-        <Route path='/:name/value/finish' element={<FinishMy />}/>
-        <Route path='/:name/person' element={<PersonPage />}/>
-        <Route path='/:name/ment' element={<MentToPage/>}/>
+        <Route path='/balance/:id/' element={<BalancePage />}/>
+        <Route path='/value' element={<ValuePage />}/>
+        <Route path='/value/finish' element={<FinishMy />}/>
+        <Route path='/person' element={<PersonPage />}/>
+        <Route path='/ment' element={<MentToPage/>}/>
         {/* 결과 입력 및 출력 화면 */}
-        <Route path='/:name/result' element={<ResultPage/>}/>
-        <Route path='/:name/final' element={<FinalResult/>}/>
+        <Route path='/result' element={<ResultPage/>}/>
+        <Route path='/final' element={<FinalResult/>}/>
 
         {/* 로딩 화면 */}
-        <Route path='/:name/start/loading' element={<MovePage index={0} link="/balance/1"/>}/>
-        <Route path='/:name/balance/loading' element={<MovePage index={1} link="/value"/>}/>
-        <Route path='/:name/value/loading' element={<MovePage index={2} link="/person"/>}/>
-        <Route path='/:name/ment/loading' element={<MentFinish/>}/>
+        <Route path='/start/loading' element={<MovePage index={0} link="/balance/1"/>}/>
+        <Route path='/balance/loading' element={<MovePage index={1} link="/value"/>}/>
+        <Route path='/value/loading' element={<MovePage index={2} link="/person"/>}/>
+        <Route path='/ment/loading' element={<MentFinish/>}/>
 
         <Route path="*" element={<Navigate replace to={"/"} />} />
     </Routes>

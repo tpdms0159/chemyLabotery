@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PageMoveButton from '../../components/Button/PageMoveButton'
 
 export default function StartPage() {
+
+
   return (
     <div className='mainview'>
     {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
