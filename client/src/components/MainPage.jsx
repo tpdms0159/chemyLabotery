@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import PageMoveButton from './Button/PageMoveButton'
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
+export const ThemeContext = createContext();
+
 function MainPage() {
   const token = localStorage.getItem("accessToken");
+
   // console.log(token);
   const cnt = 0;
   const { name } = useParams();
@@ -37,7 +40,7 @@ function MainPage() {
             axios
             .delete(`https://chemylab.shop/delete/${name}/${cnt}`,{})
             .then((res) => {
-              navigate("/start")
+              navigate("/${name}/start")
               
             })
             .catch((error) => {
@@ -76,7 +79,10 @@ function MainPage() {
     }
 
   return (
+
     <div className='mainview'>
+      <ThemeContext.Provider value='tpdms'>
+      
       <img alt='logo' src='../icons/logo.png' className='img1'/>
 
       <div className='homeBtn'>
@@ -84,6 +90,7 @@ function MainPage() {
       <PageMoveButton text="상대 물약만 다시 제조하기" onClick={() => deleteData(2)} />
       <PageMoveButton path="/result" text="물약 코드로 케미 확인하기" onClick={() => deleteData(0)} />
       </div>
+      </ThemeContext.Provider>
     </div>
   )
 }

@@ -41,16 +41,17 @@ export default function PersonPage() {
 
   return (
     <div className='mainview'>
+      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
 
       <p className="midtitle cntText" >{selectedIds.length} / 3</p>
-        <div className="titleAlign" >
-          <h2 className='subtitle' style={{fontSize: '20px', marginTop: '110px', color: 'black', width: '225px', marginLeft: '20px'}}>내가 그 사람을 떠올리면...</h2>
-          <p className='subtitle' style={{fontSize: '14px', height: '10px', lineHeight: '10px'}}>상대방을 설명하는 키워드를 골라보세요!</p>
+        <div className="titleBox" >
+          <h2 className='subtitle midtitle' style={{width: '250px'}}>내가 그 사람을 떠올리면...</h2>
+          <p className='subtitle' style={{width: '280px'}}>상대방을 설명하는 키워드를 골라보세요!</p>
           <img alt='friend' src="/icons/person.png" className='img3'/>
       </div>
 
 
-      <div style={{margin : '450px 0 50px 0'}}>
+      <div style={{marginTop: '30px'}}>
         {data.map((data, index) => {
           
           words = [...words, data];
@@ -80,9 +81,9 @@ export default function PersonPage() {
 
       {selectedIds.length === 3 ?  (
         <Link to="/ment" onClick={submitValues}>
-          <img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/>
+          <img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/>
           </Link>
-      ) : <div style={{height: '118px'}} />}
+      ) : <div style={{height: '165px'}} />}
     </div>
   );
 }

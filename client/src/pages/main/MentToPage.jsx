@@ -15,7 +15,7 @@ export default function MentToPage() {
 
   const coMent = () => {
     console.log(text.length);
-    if (text.length > 20) {
+    if (text.length > 10) {
       alert("20자 이하로 입력해주세요");
       navigator("/ment");
     }
@@ -26,14 +26,22 @@ export default function MentToPage() {
           'Authorization': `Bearer ${token}`  // Include the token here
       }
   })
-  .then(response => console.log(response.data))
-  .catch(error => console.error(error));
+  .then(
+    response => {
+    console.log(response.data);
+
+  })
+  .catch(error => {
+    console.error(error);
+
+  });
   }
 }
 
 
   return (
     <div className='mainview'>
+      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
       <img alt="상대물약4" src="/icons/finishMy.png" />
         <p className='greyFont' style={{marginBottom: 0}}>거의 제조가 끝나가요!</p>
         <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -42,8 +50,8 @@ export default function MentToPage() {
       </div>
 
       <input type="text" placeholder='마지막 한마디 적기' onChange={(e)=>setText(e.target.value)} />
-      {text.length != 0 ? <Link to={text.length > 20 ? '' : '/ment/loading'} onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='arrow'/></Link>
-        : ""}
+      {text.length != 0 ? <Link to={text.length > 10 ? '' : '/ment/loading'} onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/></Link>
+        : <div style={{height: '165px'}} />}
       
 
 

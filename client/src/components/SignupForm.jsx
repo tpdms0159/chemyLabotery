@@ -37,6 +37,7 @@ const SignupForm = () => {
 
   return (
     <div className='mainview'>
+      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
       <img alt="logo" src="../icons/logo.png" style={{
         width: '250px',
         height: 'auto',
@@ -73,7 +74,7 @@ const SignupForm = () => {
         <br />
         <br />
 
-        <button className="moveButton" style={{}} type="submit">회원가입</button>
+        <button className="moveButton fontStyle"  type="submit">회원가입</button>
       </form>
     </div>
   );

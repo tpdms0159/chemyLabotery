@@ -1,8 +1,9 @@
+/* ================font 가져오기=================== */
 /* Gmarket */
 @font-face {
   font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-  font-weight: 300;
+  src: url(/public/font/GmarketSansMedium.otf);
+  font-weight: 500;
   font-style: normal;
 }
 /* 땅스부대지개 */
@@ -13,15 +14,21 @@
   font-style: normal;
 }
 
+/* ================상위 태그 배경 이미지==================== */
+
 html {
   margin: 0;
   height: 100vh;
-  width: 100%;
-  background-image: url(/public/icons/backgroundBorder.png), url(/public/icons/backgroundImg.png);
-  background-attachment: fixed, fixed;
+  width: 100vw;
+  background-image: url(/public/icons/backgroundImg.png);
+  background-attachment: fixed;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-size: 100vw 100%, 100vw 100%;
 }
+body {
+  margin: 0;
+}
+
 
 /* =============이미지 사이즈 조절================= */
 .img1 {
@@ -48,36 +55,30 @@ html {
 }
 
 
-/* 텍스트 입력 디자인 */
+/* =============입력창 디자인=============== */
 input {
   background-color: none;
   height: 30px;
   width: 280px;
   border: 2px solid #3688FF;
   border-radius: 50px;
-  /* margin: 20px 10px 20px 15px; */
   color: black;
-  padding: 20px 28px 20px 28px;
-  font-family: GmarketSansMedium;
-  font-size: 15px;
-}
-
-.login {
+  padding: 20px 28px;
+  font-family: 'GmarketSansMedium';
   font-size: 16px;
 }
 
 
-
 /* ===============전체 화면 세팅=============== */
 .mainview {
+  margin: 0;
   min-height: 844px;
-  /* max-width: 390px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: GmarketSansMedium;
+  font-family: 'GmarketSansMedium';
 }
 
 /* =================텍스트 디자인 모음============== */
@@ -94,7 +95,7 @@ input {
 
 .fontStyle {
   padding: 20px 30px;
-  font-size: 20px;
+  font-size: 18px;
   font-family: GmarketSansMedium;
   font-weight: 500;
   text-decoration: none;
@@ -122,15 +123,15 @@ input {
 
 
 /* ================제목+부제목+이미지 정렬 박스============ */
-.titleAlign {
+/* .titleAlign {
   width: 306px;
   height: 100px;
   font-family: TTTtangsbudaejjigaeB;
   font-weight: 100;
   justify-content: center;
-  /* align-items: center; */
+
   margin-right: 30px;
-}
+} */
 
 /* ====로그인화면======= */
 
@@ -158,13 +159,14 @@ input {
 .moveButton {
   width: 300px;
   height: 60px;
-  margin: 20px 0;
+  margin: 10px 0;
   color: white;
   background: #FF6CD9;
   border-radius: 50px; 
   border: none;
   text-align: center;
   font-family: GmarketSansMedium;
+  font-weight: 700;
   /* line-height: auto; */
 }
 
@@ -212,7 +214,10 @@ input {
   display: flex;
   flex-direction: row;
   width: 350px;
-  margin: 200px -20px;
+  height: 500px;
+  padding-top: 150px;
+
+  
   justify-content: center;
 }
 
@@ -224,7 +229,7 @@ input {
   width: 100px;
   height: 60px;
   color: white;
-  font-size: 18px;
+  font-size: 17px;
   font-family: GmarketSansMedium;
   font-weight: 500;
   border-radius: 50px;
@@ -297,18 +302,13 @@ input {
 .title {
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.40);
-  
-  width: 261px;
+  width: 251px;
   height: 40px;
+  font-family: TTTtangsbudaejjigaeB;
   font-size: 36px;
   padding: 30px 30px;
-  font-weight: 400;
-
   color: #000;
   text-align: center;
-  font-family: TTTtangsbudaejjigaeB;
-
-  font-style: normal;
   line-height: 50px;
 }
 
@@ -317,36 +317,32 @@ input {
   background: rgba(255, 255, 255, 0.40);
   width: 250px;
   height: 20px;
+  font-family: 'GmarketSansMedium';
+  color: #7D7D7D;
   font-size: 16px;
   padding: 16px 35px;
-
-  color: #7D7D7D;
   text-align: center;
-  font-family: GmarketSansMedium;
-  font-weight: 400;
   line-height: 20px; 
-  margin: 10px;
-
 }
 
 .midtitle {
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.40);
-  width: 250px;
-  height: 20px;
-  font-size: 24px;
-  padding: 26px 30px;
-
-  color: black;
-  text-align: center;
-  font-family: GmarketSansMedium;
-  font-weight: 400;
-  line-height: 20px; 
-  margin: 0;
-
-  
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  color: #000;
+  line-height: 30px; 
+  margin-top: 60px;
 }
 
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  margin-top: 50px;
+}
 
 
 /* ===========밸런스페이지 이미지+제목============ */
@@ -390,7 +386,7 @@ input {
 }
 
 .blueArrow {
-  margin-bottom: 50px;
+  margin: 50px 0;
   width: auto;
   height: auto;
 }

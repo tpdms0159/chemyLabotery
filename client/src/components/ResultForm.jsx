@@ -1,13 +1,17 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import FriendResult from './FinalResult';
 import PageMoveButton from './Button/PageMoveButton';
+import { ThemeContext } from './MainPage';
 
 const ResultForm = () => {
     const [numdate, setNumdate] = useState("");
     const [friendnum, setFriendnum] = useState("");
-    const url = 'https://chemylaboratory.swygbro.com';
+    const { name } = useContext(ThemeContext);
+    const url = window.location.href;
+    const navigate = useNavigate();
+    console.log(name);
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
@@ -18,11 +22,13 @@ const ResultForm = () => {
             }   
         })
         .then(res  => {
+            console.log(res.data);
            setNumdate(res.data.numdata);
         })
         .catch(error => {
             return console.error(error);
         });
+
     }, []);
 
     const handleCopyClipBoard = async (text) => {
@@ -33,27 +39,48 @@ const ResultForm = () => {
             console.log(err);
         }
     };
+
+    const findNumdata = () => {
+        const token = localStorage.getItem("accessToken");
+        console.log("token", token);
+        console.log("numdata", friendnum);
+
+        axios
+        .get("https://chemylab.shop/final/friend", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            codenum: `${friendnum}`,
+          },
+        })
+        .then((res) => {
+            navigate(`/final?friendnum=${friendnum}`);
+        })
+        .catch((error) => {
+          alert('코드 다시 확인해주세요')
+        });
+    }
     
 
 const location = useLocation();
 
     return (
         <div className='mainview'>
+            {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
             <h4 className='title'>물약 제조 완료</h4>
             <img alt='최종 물약 아이콘' src='/icons/finishIcon.png' style={{marginBottom: '50px'}} />
             <h2 className='greyFont'>나의 물약 코드</h2> 
             <p style={{fontSize: '24px' , marginTop: 0}}>{numdate}</p>
             
-            <input type="text" placeholder="상대물약 코드 입력 후 결과 확인하기"onChange={e => setFriendnum(e.target.value)} style={{marginBottom: '30px'}}/>
+            <input type="text" placeholder="상대 물약 코드 입력 후 결과 확인하기"onChange={e => setFriendnum(e.target.value)} style={{marginBottom: '30px'}}/>
             {
-                friendnum.length != 0 ? 
-                <Link to={`/final?friendnum=${friendnum}`}><img alt='blueArrow' src='/icons/blueArrow.png' className='arrow' /></Link>
+                friendnum.length == 6 ? 
+                <img alt='blueArrow' src='/icons/blueArrow.png' className='arrow' onClick={findNumdata}/>
                 : ""
             }
             
 
             <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
-            <PageMoveButton path="/main" text="메인 화면으로 돌아가기" />
+            <PageMoveButton path={`/main/${name}`} text="메인 화면으로 돌아가기" />
             <p className='greyFont' style={{marginBottom: '100px'}}>메인화면으로 돌아가도 코드는 저장됩니다.</p>
 
             

@@ -5,6 +5,7 @@ function FinishMy() {
   
   return (
     <div className='mainview'>
+      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
         <h1 className='title' style={{
           fontSize: '28px',
           width: '300px',

@@ -5,17 +5,15 @@ import PageMoveButton from "./Button/PageMoveButton";
 
 const FinalResult = () => {
   const location = useLocation();
+  const url = window.location.href;
   const queryParams = new URLSearchParams(location.search);
   const friendnum = queryParams.get("friendnum");
   const token = localStorage.getItem("accessToken");
-  const url = 'https://chemylaboratory.swygbro.com';
+  // const [temp, setTemp] = useState(0);
   const [my, setMy] = useState([]);
   const [friend, setFriend] = useState([]);
   let tempMent1 = '';
   let tempMent2 = '';
-
-  let sortMy = [];
-  let sortFrient = [];
 
   const [data, setData] = useState([]);
 
@@ -60,6 +58,7 @@ const FinalResult = () => {
         return console.error(error);
       });
 
+      console.log("djlfdsljfl", friendnum);
     // 친구 정보 가져오기
     axios
       .get("https://chemylab.shop/final/friend", {
@@ -82,7 +81,7 @@ const FinalResult = () => {
 
   function update()  {
     
-    if (friend.length === 4) {
+    if (friend && friend.length === 4 && my && my.length === 3) {
 
       // 밸런스 값 비교하기
       for (let i = 0; i < 10; i++) {
@@ -92,24 +91,14 @@ const FinalResult = () => {
       }
 
       // 일치하는 가치관 찾기
-      // 정렬하기
-      console.log(my[2]);
-      console.log(friend[1]);
       for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 5; j++) {
-          if (my[2][i].value == friend[1][j].value){
-            showOver.push(my[2][i].value);
-          }
+        if (my[2][i].value === friend[1][i].value) {
+          showOver.push(my[2][i].value);
+        } else {
+          showFriend.push(friend[1][i].value);
+          showMy.push(my[2][i].value);
         }
-        showFriend.push(friend[1][i]);
-        showMy.push(my[2][i]);
       }
-
-      for (let i = 0; i < showOver.length; i++) {
-        showMy.pop(showOver[i]);
-        showFriend.pop(showOver[i]);
-      }
-      console.log('showmy, showfriend: ',showMy, showFriend);
 
       // 상대의 성격 보여주기
       for (let i = 0; i < 3; i++) {
@@ -152,7 +141,10 @@ const FinalResult = () => {
   };
 
   return (
-    <div className="mainview" style={{margin: '100px'}}>
+   
+
+    <div className="mainview" style={{padding: '100px 0'}}>
+    
 
       <div className="title">
       <p className="greyFont" style={{
@@ -168,11 +160,11 @@ const FinalResult = () => {
 
       <div className="midtitle" style={{ padding: '20px', width: '180px', height: '100px', margin: '30px'}}>
         <p className="greyFont" style={{fontSize: '20px'}}>우리의 취향 온도</p>
-        <p style={{fontSize: '30px'}}>{temp * 10} °C</p>
+        <p style={{fontSize: '30px', marginTop: '-10px'}}>{temp * 10} °C</p>
       </div>
 
 
-      <div className="midtitle" style={{fontSize: '18px'}}>
+      <div className="subtitle" style={{fontSize: '18px', color: 'black', height: '40px', lineHeight: '20px'}}>
         {tempMent1}
         <br/>
         {tempMent2}
@@ -243,21 +235,24 @@ const FinalResult = () => {
           <h3 style={{
             position: 'absolute',
             textAlign: 'center', 
-            top: '10%', 
+            top: '15%', 
             left: "15%", 
             color: "white", 
-            fontSize: '16px',
+            fontSize: '15px',
             width: '210px', 
             height: '60px'}}>{friend.length > 3 ? friend[3][0].mentdata : ""}</h3>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className="titleBox">
       <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
         <PageMoveButton path={`/main/${username}`} text="메인 화면으로 돌아가기" />
       </div>
     </div>
+ 
+
+    
   );
 };
 

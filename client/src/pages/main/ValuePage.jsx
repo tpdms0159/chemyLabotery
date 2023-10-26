@@ -40,13 +40,16 @@ export default function ValuePage() {
   
   
   return (
+    <>
     <div className="mainview">
       
         <p className="midtitle cntText" >{selectedIds.length} / 5</p>
-        <div className="titleAlign">
-          <h2 className='subtitle' style={{fontSize: '20px', marginTop: '120px', color: 'black'}}>나의 인생에서는...</h2>
+        <div className="titleBox">
+          <h2 className='subtitle midtitle'>나의 인생에서는...</h2>
           <p className="subtitle" style={{
-            height: "30px"
+            height: "30px",
+            lineHeight: '20px',
+            paddingTop: '10px'
           }}> 
           내 인생에서 중요하게 여기는
               <br/>
@@ -55,7 +58,7 @@ export default function ValuePage() {
           </p>
       </div>
 
-      <div style={{margin : '180px 0 50px 0'}}>
+      <div style={{marginTop: '30px'}}>
         {data.map((data, index) => {          
           words = [...words, data];
           return(
@@ -82,12 +85,12 @@ export default function ValuePage() {
       }
       </div>
 
-       
       {selectedIds.length === 5 ? (
         <Link to='/value/finish' className="valuenext" onClick={submitValues}>
           <img alt="blueArrow" src="/icons/blueArrow.png" className="blueArrow"/>
         </Link>
-      ): <div style={{height: '122px'}} />}
+      ): <div style={{height: '165px'}} />}
     </div>
+    </>
   );
 }

@@ -17,16 +17,19 @@ function MovePage(props) {
 
   return (
     <>
-    { data.length === 3 && <div className='mainview' style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}> 
-    <div >
+    
+    { data.length === 3 && <div className='mainview' style={{justifyContent: 'start'}}> 
+    <div className='titleBox'>
       <h1 className='title'> {data[props.index].title} </h1>
       <p className='subtitle' > {data[props.index].exp} </p>
       </div>
+
       <Link to={props.link}><img alt="image" src={data[props.index].src} style={{
         // top: '400px',
         width: 'auto',
         height: '300px',
-        marginTop: '-30px'
+        marginTop: '50px'
+
       }}/></Link>
 
    </div> }

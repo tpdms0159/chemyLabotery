@@ -48,8 +48,9 @@ export default function BalancePage() {
   };
 
   return (
-    <div className="mainview" >
-      <div className="titleAlign" style={{height: '800px', padding: '50px 0', margin: '0px' }}>
+    <div className="mainview"  >
+      
+      <div className="titleBox" style={{justifyContent: 'space-around', height: '200px'}}>
       <img alt="progress" src={`/icons/progress${id}.png`} 
       style={{
         width: '190px',
@@ -57,9 +58,9 @@ export default function BalancePage() {
       }
       } />
 
-      <h2 className="midtitle" >우린 얼마나 잘 맞을까?</h2>
-      <h4 className="subtitle" style={{marginLeft: '-5px'}}>둘 중 더 선호하는 것을 골라보세요!</h4>
-     
+      <h2 className="subtitle midtitle" style={{margin: 0, fontSize: '18px'}} >우린 얼마나 잘 맞을까?</h2>
+      <h4 className="subtitle" style={{fontSize: '15px', margin: 0}}>둘 중 더 선호하는 것을 골라보세요!</h4>
+      </div>
       
       <div className="buttonBox">
       {next === 11 ? 
@@ -100,7 +101,7 @@ export default function BalancePage() {
        
 }
       </div>
-      </div>
+
     </div>
   );
 }

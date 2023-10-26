@@ -4,6 +4,7 @@ import PageMoveButton from '../../components/Button/PageMoveButton'
 export default function StartPage() {
   return (
     <div className='mainview'>
+    {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
     <img alt='startMedicine' src='../icons/startIcon.png' className='img3' />
     <div style={{margin: '20px'}}>
     <div className='linebox' style={{height: '10px'}}>

@@ -6,7 +6,7 @@ export default function PageMoveButton(props) {
   
 
   return (
-    <button className={`moveButton ${props.className}`} onClick={props.onClick}>
+    <button className='moveButton' onClick={props.onClick}>
         <Link to={props.path} className='fontStyle'> {props.text} </Link>
     </button>
   );

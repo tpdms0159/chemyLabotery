@@ -37,10 +37,12 @@ const LoginForm = () => {
  
   return (
     <div className="mainview">
+      
       <img alt="logo" src="../icons/logo.png" 
       style={{
         width: '170px',
-        height: '170px'
+        height: '170px',
+        margin: '50px',
       }}/>
       <form onSubmit={userData}>
         <input
@@ -64,7 +66,7 @@ const LoginForm = () => {
         <br />
         <br />
    
-        <button className="moveButton" type="submit" style={{width: '283px', height: '60px', fontSize : '20px'}}> 로그인하고 케미 확인하기 </button>
+        <button className="moveButton" type="submit" style={{width: '283px', height: '60px', fontWeight: 500, fontSize: '20px'}}> 로그인하고 케미 확인하기 </button>
         <br />
         <Link to="/signup" className="signBox">
         <p style={{
@@ -78,7 +80,8 @@ const LoginForm = () => {
           width: '100px',
           height: '37px',
           padding: '11px 21px',
-          fontSize: '15px',
+          fontSize: '14px',
+          fontWeight: 500
           }}
        > 회원가입 </button>
         </Link>
