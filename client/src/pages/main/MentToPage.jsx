@@ -14,9 +14,9 @@ export default function MentToPage() {
   
 
   const coMent = () => {
-    console.log(text.length);
-    if (text.length > 10) {
-      alert("20자 이하로 입력해주세요");
+    console.log('length:', text.length == 14);
+    if (text.length > 15) {
+      alert("15자 이하로 입력해주세요");
       navigator("/ment");
     }
     else {
@@ -50,7 +50,7 @@ export default function MentToPage() {
       </div>
 
       <input type="text" placeholder='마지막 한마디 적기' onChange={(e)=>setText(e.target.value)} />
-      {text.length != 0 ? <Link to={text.length > 15 ? '' : '/ment/loading'} onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/></Link>
+      {text.length != 0 ? <Link to={text.length > 15  ? '' : '/ment/loading'} onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/></Link>
         : <div style={{height: '165px'}} />}
       
 

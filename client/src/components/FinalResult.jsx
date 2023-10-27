@@ -8,7 +8,7 @@ import { isObject } from "util";
 
 const FinalResult = () => {
   const location = useLocation();
-  const url = window.location.href;
+  const url = 'https://chemylaboratory.swygbro.com/';
   const queryParams = new URLSearchParams(location.search);
   const friendnum = queryParams.get("friendnum");
   const token = localStorage.getItem("accessToken");
@@ -134,7 +134,7 @@ const FinalResult = () => {
       }
 
       // 온도에 따른 멘트보여주기 tmep = 4
-  
+     
       if (data.resultMent.length === 7) {
         const resultMent = data.resultMent;
         username = my[0];
@@ -279,7 +279,7 @@ const FinalResult = () => {
       </div>
 
       <div className="titleBox">
-      <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
+      <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard(url)}>테스트 공유하기</button> 
       <PageMoveButton path={`/main/${usernameDecode}`} text="메인 화면으로 돌아가기" />
       </div>
     </div>

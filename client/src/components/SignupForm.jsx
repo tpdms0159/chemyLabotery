@@ -23,7 +23,7 @@ const SignupForm = () => {
       .post("https://chemylab.shop/signup", user)
       .then((res) => {
         if (res.data.isSuccess === "True") {
-          alert("회원가입이 완료되었습니다.!");
+          alert("회원가입이 완료되었습니다.");
           navigate("/login");
         } else {
           alert(res.data.isSuccess);

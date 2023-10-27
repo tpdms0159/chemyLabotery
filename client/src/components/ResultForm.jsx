@@ -9,9 +9,11 @@ import jwt_decode from "jwt-decode";
 const ResultForm = () => {
     const [numdate, setNumdate] = useState("");
     const [friendnum, setFriendnum] = useState("");
-    const url = window.location.href;
+    const url = 'https://chemylaboratory.swygbro.com';
     const navigate = useNavigate();
 
+
+    // console.log(url);
     //jwt decode
     const jwtencode = localStorage.getItem("accessToken");
     const tokenDecode = jwtencode;
@@ -39,6 +41,7 @@ const ResultForm = () => {
     const handleCopyClipBoard = async (text) => {
         try {
             await navigator.clipboard.writeText(text);
+            console.log(url);
             alert("클립보드에 링크가 복사되었어요.");
         } catch (err) {
             console.log(err);
@@ -59,7 +62,7 @@ const ResultForm = () => {
             navigate(`/final?friendnum=${friendnum}`);
         })
         .catch((error) => {
-          alert('코드 다시 확인해주세요')
+          alert('존재하지 않는 코드입니다.')
         });
     }
     
@@ -82,7 +85,7 @@ const location = useLocation();
             }
             
 
-            <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard({url})}>URL 공유하기</button> 
+            <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard(url)}>테스트 공유하기</button> 
             <PageMoveButton path={`/main/${usernameDecode}`} text="메인 화면으로 돌아가기" />
             <p className='greyFont' style={{marginBottom: '100px'}}>메인화면으로 돌아가도 코드는 저장됩니다.</p>
 
