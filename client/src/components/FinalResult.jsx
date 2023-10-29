@@ -46,8 +46,6 @@ const FinalResult = () => {
     fetch("/data.json")
       .then((res) => res.json())
       .then((res) => {
-
-
         setData(res);
       })
       .catch((error) => console.error("Error:", error));
@@ -81,16 +79,11 @@ const FinalResult = () => {
       .catch((error) => {
         return console.error(error);
       });
-
-      update();
-      
-
   }, [tempMent1]);
 
   function update()  {
     
     if (friend && friend.length === 4 && my && my.length === 3) {
-
       // 밸런스 값 비교하기
       for (let i = 0; i < 10; i++) {
         if (my[1][i].balacedata == friend[0][i].balacedata) {
@@ -110,12 +103,11 @@ const FinalResult = () => {
       }
 
       // 겹치는 가치관 제거
-
       for (let i = 0; i < showOver.length; i++) {
         for (let j = 0; j < 5; j++) {
           
           if (showOver[i] === showMy[j]) {
-            console.log('my & over: ',showOver[i] );
+            
             showMy.splice(j,1);
           }
           if (showOver[i] === showFriend[j]) {
@@ -123,18 +115,13 @@ const FinalResult = () => {
           }
         }
       }
-      
-      console.log('showmy:', showMy);
-      console.log('showFriend:', showFriend);
-      console.log('showOver:', showOver);
 
       // 상대의 성격 보여주기
       for (let i = 0; i < 3; i++) {
         showPerson.push(friend[2][i].value);
       }
 
-      // 온도에 따른 멘트보여주기 tmep = 4
-     
+      // 온도에 따른 멘트보여주기
       if (data.resultMent.length === 7) {
         const resultMent = data.resultMent;
         username = my[0];
@@ -168,23 +155,17 @@ const FinalResult = () => {
     }
   };
 
-  
-
   return (
-   
-
     <div className="mainview" style={{padding: '100px 0'}}>
-    
 
       <div className="title">
-      <p className="greyFont" style={{
-        height: '10px',
-        margin: 0,
-        marginTop: '-30px'
-      }}>물약 분석 결과</p>
-      <p>우리의 케미는?</p>
+        <p className="greyFont" style={{
+          height: '10px',
+          margin: 0,
+          marginTop: '-30px'
+        }}>물약 분석 결과</p>
+        <p>우리의 케미는?</p>
       </div>
-      
       
       <img alt="ondo" src={`/icons/ondo${temp}.png`} className="img3" style={{width: '250px', height: '210px', margin: '30px'}} />
 
@@ -193,39 +174,38 @@ const FinalResult = () => {
         <p style={{fontSize: '30px', marginTop: '-10px'}}>{temp * 10} °C</p>
       </div>
 
-
-      <div className="subtitle" style={{fontSize: '18px', color: 'black', height: '40px', lineHeight: '20px'}}>
+      { tempMent1 == undefined ?  null : 
+        <div className="subtitle" style={{fontSize: '18px', color: 'black', height: '40px', lineHeight: '20px'}}>
         {tempMent1}
         <br/>
         {tempMent2}
-      </div>
+        </div>
+      }
+      
 
       <div>
         <h2 style={{marginTop: '100px'}}>우리 둘의 가치관은...</h2>
-       <img alt="youAndI" src="/icons/youandme.png" style={{width: '400px', height: '200px'}} />
-       </div>
+        <img alt="youAndI" src="/icons/youandme.png" style={{width: '400px', height: '200px'}} />
+      </div>
 
 
-        <div className="linebox">
-          <div className="keyword" style={{color: 'rgba(234, 142, 220, 1)'}}>
-          {showMy.length > 0 &&
-            showMy.map((personIndex, index) => {
-              const my = data.value[personIndex - 1];
-              return <div key={index}>{my && my.word}</div>;
-            })}
-          </div>
-        <br></br>
+      <div className="linebox">
+        <div className="keyword" style={{color: 'rgba(234, 142, 220, 1)'}}>
+        {showMy.length > 0 && showMy.map((personIndex, index) => {
+            const my = data.value[personIndex - 1];
+            return <div key={index}>{my && my.word}</div>;
+          })}
+        </div>
 
-          <div className="keyword" style={{color: 'rgba(152, 96, 205, 1)'}}>
-          {showOver.length > 0 &&
-            showOver.map((personIndex, index) => {
-              // console.log('showOver:', showOver);
-              // console.log('personIndex', personIndex);
-              // console.log('index', index);
-              const showover = data.value[personIndex - 1];
-              return <div key={index}>{showover && showover.word}</div>;
-            })}
-          </div>
+        <br/>
+
+      <div className="keyword" style={{color: 'rgba(152, 96, 205, 1)'}}>
+      {showOver.length > 0 &&
+        showOver.map((personIndex, index) => {
+          const showover = data.value[personIndex - 1];
+          return <div key={index}>{showover && showover.word}</div>;
+        })}
+      </div>
         <br></br>
 
           <div className="keyword" style={{color: 'rgba(105, 172, 248, 1)'}}>
