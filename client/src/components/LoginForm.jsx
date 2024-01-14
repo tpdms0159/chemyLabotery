@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PageMoveButton from "./Button/PageMoveButton";
+import Mainview, { Minilogo } from "./StyledTag";
 
 const LoginForm = () => {
   const [id, setId] = useState("");
@@ -36,15 +37,12 @@ const LoginForm = () => {
 
  
   return (
-    <div className="mainview">
+    <Mainview>
       
-      <img alt="logo" src="../icons/logo.png" 
-      style={{
-        width: '170px',
-        height: '170px',
-        margin: '50px',
-      }}/>
+      <Minilogo alt="logo" src="../icons/logo.png" />
+
       <form onSubmit={userData}>
+        
         <input
           className="login"
           type="text"
@@ -88,7 +86,7 @@ const LoginForm = () => {
         
       </form>
       
-    </div>
+    </Mainview>
   );
 };
 

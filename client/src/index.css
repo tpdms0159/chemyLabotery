@@ -70,7 +70,7 @@ input {
 
 
 /* ===============전체 화면 세팅=============== */
-.mainview {
+/* .mainview {
   margin: 0;
   min-height: 844px;
   display: flex;
@@ -79,7 +79,7 @@ input {
   align-items: center;
   text-align: center;
   font-family: 'GmarketSansMedium';
-}
+} */
 
 /* =================텍스트 디자인 모음============== */
 /* 회색 글씨 들어가는 부분 디자인 */

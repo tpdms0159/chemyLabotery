@@ -23,9 +23,7 @@ const Router = () => {
     <>
     <ScrollToTop />
    
-    
     <Routes >
-   
         {/* 기본 화면 & 로그인 & 회원가입 */}
         <Route path='/' element ={<HomePage />}/>
         <Route path='/login' element={<LoginPage />}/>
