@@ -14,6 +14,25 @@
   font-style: normal;
 }
 
+input {
+  width: 80%;
+  height: 10%;
+  margin: 20px;
+  padding: 20px;
+
+  max-width: 260px;
+  max-height: 80px;
+
+
+  background-color: none;
+  border: 2px solid #3688FF;
+  border-radius: 50px;
+  
+  
+  font-family: 'GmarketSansMedium';
+  font-size: 16px;
+}
+
 /* ================상위 태그 배경 이미지==================== */
 
 html {
@@ -56,17 +75,9 @@ body {
 
 
 /* =============입력창 디자인=============== */
-input {
-  background-color: none;
-  height: 30px;
-  width: 280px;
-  border: 2px solid #3688FF;
-  border-radius: 50px;
-  color: black;
-  padding: 20px 28px;
-  font-family: 'GmarketSansMedium';
-  font-size: 16px;
-}
+/* input {
+
+} */
 
 
 /* ===============전체 화면 세팅=============== */
@@ -94,8 +105,8 @@ input {
 /* ==================두 줄 텍스트 정렬 디자인=================== */
 
 .fontStyle {
-  padding: 20px 30px;
-  font-size: 18px;
+  padding: 1%;
+  font-size: 20px;
   font-family: GmarketSansMedium;
   font-weight: 500;
   text-decoration: none;
@@ -181,8 +192,11 @@ input {
 
 /* ========================밸런스 게임 선택지 버튼 스타일======================= */
 .selectButton {
-  width: 175px;
-  height: 100px;
+  width: 25%;
+  height: 12vh;
+
+  max-width: 175px;
+  max-height: 200px;
 
   display: flex;
   padding: 15px 30px 15px 30px;
@@ -196,7 +210,7 @@ input {
 
   justify-content: center;
   align-items: center;
-  font-family: GmarketSansMedium;
+  font-family: 'GmarketSansMedium';
 }
 
 
@@ -209,47 +223,7 @@ input {
   align-items: center;
 }
 
-/* =================선택지 버튼 두개 보여주는 박스================ */
-.buttonBox {
-  display: flex;
-  flex-direction: row;
-  width: 350px;
-  height: 500px;
-  padding-top: 150px;
 
-  
-  justify-content: center;
-}
-
-
-
-
-/* ==============가치관 선택지 버튼 디자인================== */
-.valueBtn {
-  width: 100px;
-  height: 60px;
-  color: white;
-  font-size: 17px;
-  font-family: GmarketSansMedium;
-  font-weight: 500;
-  border-radius: 50px;
-  margin: 5px;
-  text-align: center;
-  line-height: 60px;
-  border: none;
-}
-/* ===============성격 선택지 버튼 디자인================= */
-.personBtn {
-  width: 160px;
-  height: 60px;
-}
-
-/* =============가치관 & 성격 선택지 2개 or 3개로 담는 div 디자인============== */
-.showBtn {
-  display: flex;
-  flex-direction: row;
-  /* margin-top: 250px; */
-}
 
 
 /* ================화살표 디자인=============== */
@@ -335,15 +309,6 @@ input {
   line-height: 30px; 
   margin-top: 60px;
 }
-
-.titleBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  margin-top: 50px;
-}
-
 
 /* ===========밸런스페이지 이미지+제목============ */
 

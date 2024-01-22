@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Mainview, { Middleicons, Minititle, Title, Titlebox } from './StyledTag';
 
 function MovePage(props) {
   const [data, setData] = useState([]);
-  // const [getData, setGetData] = useState(false);
 
   useEffect(() => {
     fetch('/data.json')
@@ -14,27 +14,20 @@ function MovePage(props) {
       .catch(error => console.error('Error:', error));
   }, []);
 
-
   return (
     <>
-    
-    { data.length === 3 && <div className='mainview' style={{justifyContent: 'start'}}> 
-    <div className='titleBox'>
-      <h1 className='title'> {data[props.index].title} </h1>
-      <p className='subtitle' > {data[props.index].exp} </p>
-      </div>
+    { data.length === 3 ? 
+    <Mainview style={{justifyContent: 'flex-start'}}> 
+      <Titlebox>
+        <Title> {data[props.index].title} </Title>
+        <Minititle> {data[props.index].exp} </Minititle>
+      </Titlebox>
 
-      <Link to={props.link}><img alt="image" src={data[props.index].src} style={{
-        // top: '400px',
-        width: 'auto',
-        height: '300px',
-        marginTop: '50px'
-
-      }}/></Link>
-
-   </div> }
+      <Link to={props.link}>
+        <Middleicons alt="image" src={data[props.index].src}/>
+      </Link>
+   </Mainview> : null}
    </>
-    
   );
 
 }

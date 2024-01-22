@@ -3,8 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import FriendResult from './FinalResult';
 import PageMoveButton from './Button/PageMoveButton';
-import { ThemeContext } from './MainPage';
+import { ThemeContext } from '../pages/main/Mainpage/MainPage';
 import jwt_decode from "jwt-decode";
+import Mainview, { Biglogo, Title } from './StyledTag';
 
 const ResultForm = () => {
     const [numdate, setNumdate] = useState("");
@@ -70,12 +71,12 @@ const ResultForm = () => {
 const location = useLocation();
 
     return (
-        <div className='mainview'>
-            {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
-            <h4 className='title'>물약 제조 완료</h4>
-            <img alt='최종 물약 아이콘' src='/icons/finishIcon.png' style={{marginBottom: '50px'}} />
+        <Mainview>
+       
+            <Title>물약 제조 완료</Title>
+            <Biglogo alt='최종 물약 아이콘' src='/icons/finishIcon.png'  />
             <h2 className='greyFont'>나의 물약 코드</h2> 
-            <p style={{fontSize: '24px' , marginTop: 0}}>{numdate}</p>
+            <p style={{fontSize: '24px'}}>{numdate}</p>
             
             <input type="text" placeholder="상대 물약 코드 입력 후 결과 확인하기"onChange={e => setFriendnum(e.target.value)} style={{marginBottom: '30px'}}/>
             {
@@ -84,13 +85,12 @@ const location = useLocation();
                 : ""
             }
             
-
-            <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard(url)}>테스트 공유하기</button> 
+            <PageMoveButton text='테스트 공유하기' onClick={() => handleCopyClipBoard(url)}/> 
             <PageMoveButton path={`/main/${usernameDecode}`} text="메인 화면으로 돌아가기" />
-            <p className='greyFont' style={{marginBottom: '100px'}}>메인화면으로 돌아가도 코드는 저장됩니다.</p>
+            <p className='greyFont' style={{marginBottom: '150px'}}>메인화면으로 돌아가도 코드는 저장됩니다.</p>
 
             
-        </div>
+        </Mainview>
     );
 }
 

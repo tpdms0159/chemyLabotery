@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import Mainview, { Rowbtnbox, Keywordbtn, Middletitle, Minititle, Titlebox, Btnbox, Minilogo, Middlelog } from "../../../components/StyledTag";
 
 export default function ValuePage() {
   const [data, setData] = useState([]);
@@ -40,57 +41,53 @@ export default function ValuePage() {
   
   
   return (
-    <>
-    <div className="mainview">
+    <Mainview>
       
         <p className="midtitle cntText" >{selectedIds.length} / 5</p>
-        <div className="titleBox">
-          <h2 className='subtitle midtitle'>나의 인생에서는...</h2>
-          <p className="subtitle" style={{
-            height: "30px",
-            lineHeight: '20px',
-            paddingTop: '10px'
-          }}> 
-          내 인생에서 중요하게 여기는
-              <br/>
-              가치들을 골라보세요!
-    
-          </p>
-      </div>
 
-      <div style={{marginTop: '30px'}}>
+        <Titlebox style={{marginTop: '10vh'}}>
+          <Middletitle>나의 인생에서는...</Middletitle>
+          <Minititle> 
+            내 인생에서 중요하게 여기는
+              <br/>
+              <br/>
+            가치들을 골라보세요!
+          </Minititle>
+        </Titlebox>
+
+      <Btnbox>
         {data.map((data, index) => {          
           words = [...words, data];
           return(
-            <div >
+            <>
             { parseInt(index % 3) === 2 ? 
             
-            <div className="showBtn"> 
+            <Rowbtnbox> 
               {words.map((words) => {
                 const isSelected = selectedIds.includes(words.id);
                 return(
-                  <button key={words.id} className="valueBtn" onClick={() => handleClick(words.id)}
+                  <Keywordbtn key={words.id} onClick={() => handleClick(words.id)}
                   style={{ background: isSelected ? '#3688FF' : '#FF6CD9', color: 'white' }} >  
                   {words.word}
-                    </button>
+                    </Keywordbtn>
                 )
               })}
               {words = []}
-              </div> 
+              </Rowbtnbox> 
             : null}
-            </div>
+            </>
           );
         }
         )
       }
-      </div>
+      </Btnbox>
 
       {selectedIds.length === 5 ? (
-        <Link to='/value/finish' className="valuenext" onClick={submitValues}>
+        <Link to='/value/finish' onClick={submitValues}>
           <img alt="blueArrow" src="/icons/blueArrow.png" className="blueArrow"/>
         </Link>
       ): <div style={{height: '165px'}} />}
-    </div>
-    </>
+    </Mainview>
+
   );
 }

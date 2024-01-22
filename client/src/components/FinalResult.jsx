@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import PageMoveButton from "./Button/PageMoveButton";
 import jwt_decode from "jwt-decode";
 import { isObject } from "util";
+import Mainview, { Bigicons, Biglogo, Title } from "./StyledTag";
 
 
 const FinalResult = () => {
@@ -73,7 +74,8 @@ const FinalResult = () => {
           codenum: `${friendnum}`,
         },
       })
-      .then((res) => {
+      .then((res) => { 
+        console.log(res.data);
         setFriend(res.data.friendChoice);
       })
       .catch((error) => {
@@ -81,7 +83,12 @@ const FinalResult = () => {
       });
   }, [tempMent1]);
 
+
+
   function update()  {
+
+    console.log(friend[0]);
+    console.log(my[0]);
     
     if (friend && friend.length === 4 && my && my.length === 3) {
       // 밸런스 값 비교하기
@@ -156,18 +163,16 @@ const FinalResult = () => {
   };
 
   return (
-    <div className="mainview" style={{padding: '100px 0'}}>
+    <Mainview>
 
-      <div className="title">
+      <Title>
         <p className="greyFont" style={{
-          height: '10px',
-          margin: 0,
-          marginTop: '-30px'
+          height: '7px',
         }}>물약 분석 결과</p>
         <p>우리의 케미는?</p>
-      </div>
+      </Title>
       
-      <img alt="ondo" src={`/icons/ondo${temp}.png`} className="img3" style={{width: '250px', height: '210px', margin: '30px'}} />
+      <Bigicons alt="ondo" src={`/icons/ondo${temp}.png`} />
 
       <div className="midtitle" style={{ padding: '20px', width: '180px', height: '100px', margin: '30px'}}>
         <p className="greyFont" style={{fontSize: '20px'}}>우리의 취향 온도</p>
@@ -241,8 +246,6 @@ const FinalResult = () => {
           <img alt="sayment" src="/icons/sayMent.png" className="img4" style={{
             height: '70px',
             width: '260px',
-            // marginLeft: '-15px',
-            // marginTop: '-10px'
           }}/>
            
           <h3 style={{
@@ -262,7 +265,7 @@ const FinalResult = () => {
       <button className='moveButton fontStyle' onClick={() => handleCopyClipBoard(url)}>테스트 공유하기</button> 
       <PageMoveButton path={`/main/${usernameDecode}`} text="메인 화면으로 돌아가기" />
       </div>
-    </div>
+    </Mainview>
  
 
     

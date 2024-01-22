@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Mainview, { Minilogo } from "../../components/StyledTag";
+import PageMoveButton from "../../components/Button/PageMoveButton";
 
 
 const SignupForm = () => {
@@ -36,14 +38,26 @@ const SignupForm = () => {
   };
 
   return (
-    <div className='mainview'>
-      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
-      <img alt="logo" src="../icons/logo.png" style={{
-        width: '250px',
-        height: 'auto',
-      }} className="img3"/>
-      <form onSubmit={userData}>
-        <input
+    <Mainview>
+     
+     <Minilogo alt="logo" src="../icons/logo.png" />
+
+      
+        <input placeholder='아이디' onChange={(e) => {
+                setId(e.target.value);
+                console.log(e.target.value);
+              }}/>
+
+        <input placeholder='비밀번호' type='password' onChange={(e) => {
+            setPassword(e.target.value);
+            console.log(e.target.value);
+          }}/>
+
+        <input placeholder='비밀번호 확인' type='password' onChange={(e) => {
+            setPassword2(e.target.value);
+            console.log(e.target.value);
+          }}/>
+        {/* <input
           className="login"
           type="text"
           placeholder="아이디"
@@ -72,11 +86,11 @@ const SignupForm = () => {
           }}
         />
         <br />
-        <br />
+        <br /> */}
 
-        <button className="moveButton fontStyle"  type="submit">회원가입</button>
-      </form>
-    </div>
+        <PageMoveButton signup='true' style={{maxWidth: '100px'}} text='회원가입' onClick={userData}/>
+  
+    </Mainview>
   );
 };
 

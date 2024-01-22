@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import PageMoveButton from './Button/PageMoveButton'
+import PageMoveButton from '../../../components/Button/PageMoveButton'
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Mainview, { Biglogo, Middlelog } from '../../../components/StyledTag';
 
 
 
@@ -77,18 +78,18 @@ function MainPage() {
 
   return (
 
-    <div className='mainview'>
+    <Mainview>
 
       
-      <img alt='logo' src='../icons/logo.png' className='img1'/>
+    <Middlelog alt="logo" src="../icons/logo.png" /> 
 
-      <div className='homeBtn'>
+      
       <PageMoveButton text="처음부터 실험하기" onClick={() => deleteData(1)}/>
       <PageMoveButton text="상대 물약만 다시 제조하기" onClick={() => deleteData(2)} />
       <PageMoveButton path="/result" text="물약 코드로 케미 확인하기" onClick={() => deleteData(0)} />
-      </div>
+    
    
-    </div>
+    </Mainview>
   )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Mainview, { Bigicons, Btnbox, Keywordbtn, Middleicons, Middletitle, Minititle, Rowbtnbox, Titlebox } from '../../../components/StyledTag';
 
 export default function PersonPage() {
   const [data, setData] = useState([]); // 데이터를 저장할 상태
@@ -40,50 +41,52 @@ export default function PersonPage() {
 
 
   return (
-    <div className='mainview'>
-      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
-
+    <Mainview>
+      
       <p className="midtitle cntText" >{selectedIds.length} / 3</p>
-        <div className="titleBox" >
-          <h2 className='subtitle midtitle' style={{width: '250px'}}>내가 그 사람을 떠올리면...</h2>
-          <p className='subtitle' style={{width: '280px'}}>상대방을 설명하는 키워드를 골라보세요!</p>
-          <img alt='friend' src="/icons/person.png" className='img3'/>
-      </div>
+
+      <Titlebox style={{marginTop: '100px'}}>
+        <Middletitle>내가 그 사람을 떠올리면...</Middletitle>
+        <Minititle>상대방을 설명하는 키워드를 골라보세요!</Minititle>
+        <Bigicons alt='friend' src="/icons/person.png" />
+      </Titlebox>
 
 
-      <div style={{marginTop: '30px'}}>
+      <Btnbox>
         {data.map((data, index) => {
           
           words = [...words, data];
           return(
-            <div key={index}>
+            <>
             { parseInt(index % 2) === 1 ? 
             
-            <div className="showBtn"> 
+            <Rowbtnbox> 
               {words.map((words) => {   
                 const isSelected = selectedIds.includes(words.id);
                 return(
-                  <button key={words.id} className="valueBtn personBtn" onClick={() => handleClick(words.id)}
-                  style={{ background: isSelected ? '#3688FF' : '#FF6CD9', color: 'white' }} >  
+                  <Keywordbtn key={words.id} onClick={() => handleClick(words.id)}
+                  style={{ 
+                    background: isSelected ? '#3688FF' : '#FF6CD9', color: 'white', 
+                    maxWidth: '170px'}} >  
                   {words.word}
-                    </button>
+                    </Keywordbtn>
                 )
               })}
               {words = []}
-              </div> 
+              </Rowbtnbox> 
             : null}
-            </div>
+            </>
           );
         }
         )
       }
-      </div>
+      </Btnbox>
 
       {selectedIds.length === 3 ?  (
         <Link to="/ment" onClick={submitValues}>
           <img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/>
           </Link>
       ) : <div style={{height: '165px'}} />}
-    </div>
+    </Mainview>
   );
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React,{useState} from 'react'
 import { Link } from "react-router-dom";
 import PageMoveButton from '../../components/Button/PageMoveButton';
+import Mainview, { Biglogo, Linebox, Subtext } from '../../components/StyledTag';
 
 export default function MentToPage() {
   const [text, setText] = useState("");
@@ -40,22 +41,31 @@ export default function MentToPage() {
 
 
   return (
-    <div className='mainview'>
-      {/* <img alt="border" src="icons/backgroundBorder.png"  style={{position: 'fixed', top: 0, width: '100%', height:'100vh'}}/> */}
-      <img alt="상대물약4" src="/icons/finishMy.png" />
-        <p className='greyFont' style={{marginBottom: 0}}>거의 제조가 끝나가요!</p>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-        <p>상대에게 전할 한마디</p>
-        <p className='greyFont'>를 적어주세요</p>
-      </div>
+    <Mainview>
+     
+      <Biglogo alt="상대물약4" src="/icons/finishMy.png" />
+
+       <Subtext>
+          <Linebox>
+            <p className='greyFont'>거의 제조가 끝나가요!</p>
+          </Linebox>
+
+          <Linebox>
+            <p>상대에게 전할 한마디 </p>
+            <p className='greyFont'>를 적어주세요.</p>
+          </Linebox>
+
+        </Subtext>
 
       <input type="text" placeholder='마지막 한마디 적기' onChange={(e)=>setText(e.target.value)} />
-      {text.length != 0 ? <Link to={text.length > 15  ? '' : '/ment/loading'} onClick={coMent}><img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/></Link>
-        : <div style={{height: '165px'}} />}
       
+      {text.length != 0 ? 
+        <Link to={text.length > 15  ? '' : '/ment/loading'} onClick={coMent}>
+          <img alt='blueArrow' src='/icons/blueArrow.png' className='blueArrow'/>
+        </Link>
+        : <div style={{height: '165px'}} />}
 
-
-    </div>
+    </Mainview>
   )
 }
 

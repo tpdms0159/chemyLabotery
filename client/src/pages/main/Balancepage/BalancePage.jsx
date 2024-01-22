@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Mainview, { Balancebox, Middletitle, Minititle, Titlebox } from "../../../components/StyledTag";
 
 export default function BalancePage() {
   const { id } = useParams();
@@ -22,9 +23,6 @@ export default function BalancePage() {
     return (
       <div>
         <Link to="/value">
-          {/* value 화면으로 넘어가는 page 만들기 */}
-
-
           <button>Value</button>
         </Link>
       </div>
@@ -48,30 +46,25 @@ export default function BalancePage() {
   };
 
   return (
-    <div className="mainview"  >
+    <Mainview>
       
-      <div className="titleBox" style={{justifyContent: 'space-around', height: '200px'}}>
-      <img alt="progress" src={`/icons/progress${id}.png`} 
-      style={{
-        width: '190px',
-        height: '34px',
-      }
-      } />
-
-      <h2 className="subtitle midtitle" style={{margin: 0, fontSize: '18px'}} >우린 얼마나 잘 맞을까?</h2>
-      <h4 className="subtitle" style={{fontSize: '15px', margin: 0}}>둘 중 더 선호하는 것을 골라보세요!</h4>
-      </div>
+      <Titlebox style={{justifyContent: 'space-around', height: '200px'}}>
+      <img alt="progress" src={`/icons/progress${id}.png`} style={{
+        width: '190px',height: '34px'}} />
+      <Middletitle>우린 얼마나 잘 맞을까?</Middletitle>
+      <Minititle>둘 중 더 선호하는 것을 골라보세요!</Minititle>
+      </Titlebox>
       
-      <div className="buttonBox">
+      <Balancebox>
       {next === 11 ? 
         <>
-        
+      
           <Link
             className="selectButton"
             to={`/balance/loading`}
             onClick={() => BalanceData(1)}
           >
-            <div>{data.optionFirst}</div>
+            {data.optionFirst}
           </Link>
           <Link
             className="selectButton"
@@ -100,8 +93,8 @@ export default function BalancePage() {
        </>
        
 }
-      </div>
+      </Balancebox>
 
-    </div>
+    </Mainview>
   );
 }
